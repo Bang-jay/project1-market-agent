@@ -1,16 +1,42 @@
 company_name: NovaFactory AI
-business_area: 제조업 AI 비전 품질검사
+business_area: 제조업 AI 비전 품질검사 및 AI B2B 마케팅 인텔리전스
+domains:
+  manufacturing:
+    name: 제조업 AI
+    description: 스마트팩토리, 머신비전 품질검사, 제조 AX
+    keywords:
+      - AI
+      - 스마트팩토리
+      - 품질검사
+      - 자동화
+      - 클라우드
+      - 제조 AX
+  marketing:
+    name: AI 마케팅
+    description: 마케팅 자동화, 애드테크, 생성형 AI 광고, 고객 분석
+    keywords:
+      - AI 마케팅
+      - 마케팅 자동화
+      - 애드테크
+      - 퍼포먼스 마케팅
+      - 생성형 AI 광고
+      - 고객 분석
+      - 전환율 최적화
+      - CRM
 products:
   - 비전 기반 불량 탐지 SaaS
   - 제조 품질 리포트 자동화
+  - AI 기반 마케팅 콘텐츠 생성 및 성과 분석
 target_market:
   - 중소·중견 제조기업
   - 스마트팩토리 구축 기업
+  - B2B 마케팅 및 제조 솔루션 도입 기업
 competitors:
   - VisionForge
   - InspectAI
   - FactoryMind
   - QualiBot
+  - AdTechAI
 interest_keywords:
   - AI
   - 스마트팩토리
@@ -18,6 +44,9 @@ interest_keywords:
   - 자동화
   - 클라우드
   - 제조 AX
+  - AI 마케팅
+  - 마케팅 자동화
+  - 애드테크
 funding_keywords:
   - 창업지원
   - AI 바우처

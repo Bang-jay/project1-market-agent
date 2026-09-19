@@ -340,13 +340,18 @@ class MarketCrawler:
         # 4. Policy & Funding Subsidies
         self.crawl_google_news_query("AI 바우처 OR 스마트공장 지원사업", "policy", "Policy & Funding", "AI바우처|스마트공장|지원사업")
         self.crawl_google_news_query("제조 중소기업 R&D 지원", "policy", "R&D Subsidies", "R&D|정부지원|제조업")
+
+        # 5. Marketing AI Domain (Target: 50~100 articles)
+        self.crawl_google_news_query("생성형 AI 마케팅 OR 마케팅 자동화 솔루션", "marketing", "AI Marketing Automation", "AI마케팅|자동화|생성형AI")
+        self.crawl_google_news_query("애드테크 OR 퍼포먼스 마케팅 AI OR 디지털 광고 AI", "marketing", "AdTech & Performance Marketing", "애드테크|디지털마케팅|광고AI")
+        self.crawl_google_news_query("고객 데이터 플랫폼 CDP OR AI CRM 마케팅", "marketing", "Customer Analytics & CRM", "CDP|고객분석|CRM")
         
-        # 5. Media RSS Feeds
+        # 6. Media RSS Feeds
         self.crawl_ai_times()
         self.crawl_zdnet_korea()  # Handled failure testing
         self.crawl_cio_korea()
         
-        # 6. ArXiv Papers
+        # 7. ArXiv Papers
         self.crawl_arxiv_api(max_results=50)
 
     def run_alternative_sources(self):
