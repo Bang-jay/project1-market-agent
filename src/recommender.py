@@ -64,7 +64,18 @@ class MarketRecommender:
         score = 40.0
         reasons = []
 
-        # 1. Marketing AI & AdTech Domain
+        # 1. Startup & Venture Investment Domain
+        startup_kw = ["스타트업", "투자유치", "시드", "시리즈a", "tips", "팁스", "액셀러레이터", "vc", "데모데이", "창업", "스케일업", "ir"]
+        startup_matches = [w for w in startup_kw if w in text_lower]
+        if startup_matches or category == "startup":
+            pts = min(max(len(startup_matches) * 5.0, 15.0), 28.0)
+            score += pts
+            if startup_matches:
+                reasons.append(f"스타트업/투자({', '.join(startup_matches[:2])}) 부합")
+            else:
+                reasons.append("스타트업 투자유치 및 창업 생태계 동향")
+
+        # 2. Marketing AI & AdTech Domain
         marketing_kw = ["마케팅", "광고", "애드테크", "캠페인", "전환율", "crm", "퍼포먼스", "고객분석", "생성형 ai", "adtech", "cdp", "그로스"]
         marketing_matches = [w for w in marketing_kw if w in text_lower]
         if marketing_matches or category == "marketing":
@@ -75,7 +86,7 @@ class MarketRecommender:
             else:
                 reasons.append("디지털 마케팅 및 자동화 솔루션 동향")
 
-        # 2. Core Vision AI & Defect keywords (High domain priority)
+        # 3. Core Vision AI & Defect keywords (High domain priority)
         core_vision_kw = ["비전", "불량", "품질검사", "머신비전", "defect", "inspection", "외관검사", "이상탐지"]
         vision_matches = [w for w in core_vision_kw if w in text_lower]
         if vision_matches:
@@ -83,14 +94,14 @@ class MarketRecommender:
             score += pts
             reasons.append(f"제조 비전 키워드({', '.join(vision_matches[:2])}) 일치")
 
-        # 3. Interest keywords matching
+        # 4. Interest keywords matching
         interest_matches = [k for k in self.interest_keywords if k in text_lower]
         if interest_matches:
             pts = min(len(interest_matches) * 4.0, 16.0)
             score += pts
             reasons.append(f"관심 기술 분야({', '.join(interest_matches[:2])}) 부합")
 
-        # 4. Policy & Funding keywords matching
+        # 5. Policy & Funding keywords matching
         funding_matches = [f for f in self.funding_keywords if f in text_lower]
         if funding_matches or category == "policy":
             pts = min(max(len(funding_matches) * 5.0, 10.0), 20.0)
@@ -100,22 +111,22 @@ class MarketRecommender:
             else:
                 reasons.append("중소제조 관련 정부 정책/규제 동향")
 
-        # 5. Competitor & Industry mentions
+        # 6. Competitor & Industry mentions
         comp_matches = [c for c in self.competitors if c in text_lower]
         if comp_matches or category == "competitor":
             score += 15.0
             if comp_matches:
                 reasons.append(f"주요 경쟁사({', '.join(comp_matches)}) 직접 동향")
             else:
-                reasons.append("비전/마케팅 솔루션 시장 경쟁사 및 생태계 동향")
+                reasons.append("비전/솔루션 시장 경쟁사 및 생태계 동향")
 
-        # 6. Target market / Product relevance
-        target_kw = ["중소기업", "중견기업", "제조업", "공장", "saas", "리포트", "자동화", "b2b"]
+        # 7. Target market / Product relevance
+        target_kw = ["중소기업", "중견기업", "제조업", "공장", "saas", "리포트", "자동화", "b2b", "스타트업"]
         target_matches = [t for t in target_kw if t in text_lower]
         if target_matches:
             score += min(len(target_matches) * 3.0, 12.0)
 
-        # 7. Recency score (newer is slightly preferred)
+        # 8. Recency score (newer is slightly preferred)
         try:
             pub_dt = datetime.strptime(date_str, "%Y-%m-%d")
             days_diff = (datetime.now() - pub_dt).days
@@ -130,12 +141,14 @@ class MarketRecommender:
 
         # Generate synthesized recommendation reason
         if not reasons:
-            reason_text = "제조 스마트팩토리 및 AI 산업 생태계 일반 동향"
+            reason_text = "제조·마케팅 및 스타트업 산업 생태계 일반 동향"
         else:
             reason_text = " · ".join(reasons)
 
         # Prepend strategic context
-        if category == "marketing":
+        if category == "startup":
+            reason_summary = f"[스타트업/투자] {reason_text} - 초기 스타트업 TIPS 선정, 투자 유치(IR) 및 스케일업 생태계 기회 포착"
+        elif category == "marketing":
             reason_summary = f"[AI 마케팅] {reason_text} - B2B 마케팅 자동화, 애드테크 도입 및 고객 전환율 극대화 전략에 활용 가능"
         elif category == "policy":
             reason_summary = f"[자금/정책] {reason_text} - NovaFactory AI의 고객사 AI 바우처 및 제조 R&D 수혜 가능성 높음"
@@ -182,13 +195,13 @@ class MarketRecommender:
         for idx in range(min(10, len(df))):
             row = df.iloc[idx]
             prompt = (
-                f"당신은 제조업 AI 비전 품질검사 기업 '{self.company_name}'의 시장 전략 분석가입니다.\n"
+                f"당신은 제조업 AI, AI 마케팅, 스타트업 투자 분야의 종합 전략 분석가입니다.\n"
+                f"기업명: {self.company_name}\n"
                 f"주력 사업: {self.business_area}\n"
-                f"제품군: {', '.join(self.products)}\n"
                 f"기사 제목: {row['title']}\n"
                 f"기사 요약: {row['summary'][:150]}\n"
                 f"카테고리: {row['category']}\n\n"
-                f"이 기사가 우리 회사에 미치는 영향도와 추천 점수(75~99점) 및 1문장의 핵심 추천 이유를 작성하세요.\n"
+                f"이 기사가 우리 회사(제조 AI 기술, 마케팅 자동화, 스타트업 투자/생태계)에 미치는 영향도와 추천 점수(75~99점) 및 1문장의 핵심 추천 이유를 작성하세요.\n"
                 f"반드시 다음 JSON 형식으로만 응답하세요:\n"
                 f"{{\"score\": 95.0, \"recommendation_reason\": \"...\"}}"
             )
@@ -234,14 +247,16 @@ class MarketRecommender:
         # Sort by score descending, then date descending
         df = df.sort_values(by=["score", "date"], ascending=[False, False]).reset_index(drop=True)
 
-        # Select candidates ensuring domain diversity (Manufacturing AI + Marketing AI)
-        mfg_df = df[df["category"] != "marketing"]
+        # Select candidates ensuring 3-domain diversity (Manufacturing AI + Marketing AI + Startup)
+        mfg_df = df[(df["category"] != "marketing") & (df["category"] != "startup")]
         mkt_df = df[df["category"] == "marketing"]
+        stp_df = df[df["category"] == "startup"]
         
-        if len(mkt_df) >= 10:
-            top_mfg = mfg_df.head(15)
-            top_mkt = mkt_df.head(15)
-            top_candidates = pd.concat([top_mfg, top_mkt]).sort_values(by=["score", "date"], ascending=[False, False]).reset_index(drop=True)
+        if len(mkt_df) >= 5 and len(stp_df) >= 5:
+            top_mfg = mfg_df.head(10)
+            top_mkt = mkt_df.head(10)
+            top_stp = stp_df.head(10)
+            top_candidates = pd.concat([top_mfg, top_mkt, top_stp]).sort_values(by=["score", "date"], ascending=[False, False]).reset_index(drop=True)
         else:
             top_candidates = df.head(top_k).copy()
 

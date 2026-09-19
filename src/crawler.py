@@ -345,13 +345,18 @@ class MarketCrawler:
         self.crawl_google_news_query("생성형 AI 마케팅 OR 마케팅 자동화 솔루션", "marketing", "AI Marketing Automation", "AI마케팅|자동화|생성형AI")
         self.crawl_google_news_query("애드테크 OR 퍼포먼스 마케팅 AI OR 디지털 광고 AI", "marketing", "AdTech & Performance Marketing", "애드테크|디지털마케팅|광고AI")
         self.crawl_google_news_query("고객 데이터 플랫폼 CDP OR AI CRM 마케팅", "marketing", "Customer Analytics & CRM", "CDP|고객분석|CRM")
+
+        # 6. Startup & Investment Domain (Target: 50~100 articles)
+        self.crawl_google_news_query("AI 스타트업 투자유치 OR 시드투자 OR 시리즈A", "startup", "Startup Investments", "스타트업|투자유치|시리즈A")
+        self.crawl_google_news_query("TIPS 팁스 선정 OR 초기창업패키지", "startup", "TIPS & Startup Grants", "TIPS|팁스|초기창업")
+        self.crawl_google_news_query("스타트업 액셀러레이터 VC 데모데이", "startup", "Accelerators & VCs", "액셀러레이터|VC|데모데이")
         
-        # 6. Media RSS Feeds
+        # 7. Media RSS Feeds
         self.crawl_ai_times()
         self.crawl_zdnet_korea()  # Handled failure testing
         self.crawl_cio_korea()
         
-        # 7. ArXiv Papers
+        # 8. ArXiv Papers
         self.crawl_arxiv_api(max_results=50)
 
     def run_alternative_sources(self):

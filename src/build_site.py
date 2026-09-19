@@ -1,7 +1,8 @@
 """
 Site Builder Module (src/build_site.py)
 Generates docs/index.html and docs/report.json from recommended_market_news.csv.
-Creates a responsive, production-ready static dashboard for GitHub Pages with Domain Navigation (Manufacturing AI vs. AI Marketing).
+Creates a responsive, production-ready static dashboard for GitHub Pages with 3-Domain Navigation:
+Manufacturing AI vs. AI Marketing vs. Startup Ecosystem.
 """
 
 import os
@@ -45,7 +46,7 @@ def build():
     
     profile = load_profile()
     company_name = profile.get("company_name", "NovaFactory AI")
-    business_area = profile.get("business_area", "제조업 AI 비전 품질검사 및 AI 마케팅 인텔리전스")
+    business_area = profile.get("business_area", "제조업 AI 비전 품질검사, AI 마케팅 및 스타트업 인텔리전스")
     
     # 1. Create docs/report.json
     now_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -53,12 +54,13 @@ def build():
     all_recs = df_rec.to_dict(orient="records")
     category_counts = df_rec["category"].value_counts().to_dict()
 
-    mfg_count = len(df_rec[df_rec["category"] != "marketing"])
+    mfg_count = len(df_rec[(df_rec["category"] != "marketing") & (df_rec["category"] != "startup")])
     mkt_count = len(df_rec[df_rec["category"] == "marketing"])
+    stp_count = len(df_rec[df_rec["category"] == "startup"])
 
     report_data = {
         "metadata": {
-            "title": f"{company_name} 다분야 시장·경쟁사·마케팅 추천 인텔리전스 리포트",
+            "title": f"{company_name} 다분야(제조AI·마케팅·스타트업) 추천 인텔리전스 리포트",
             "generated_at": now_str,
             "company_name": company_name,
             "business_area": business_area,
@@ -66,7 +68,8 @@ def build():
             "top_recommended_count": len(df_rec),
             "domain_statistics": {
                 "manufacturing_ai": mfg_count,
-                "marketing_ai": mkt_count
+                "marketing_ai": mkt_count,
+                "startup_ecosystem": stp_count
             },
             "scoring_mode": "Gemini AI" if any("[Gemini AI]" in str(r.get("recommendation_reason", "")) for r in all_recs) else "Rule-based Engine"
         },
@@ -86,14 +89,23 @@ def build():
         "policy": ("#059669", "정부지원·정책"),
         "market": ("#7c3aed", "시장동향"),
         "competitor": ("#d97706", "경쟁사분석"),
-        "marketing": ("#ec4899", "AI 마케팅·애드테크")
+        "marketing": ("#ec4899", "AI 마케팅·애드테크"),
+        "startup": ("#f59e0b", "스타트업·투자")
     }
+
+    def get_domain_info(cat: str):
+        if cat == "marketing":
+            return "marketing", "📢 마케팅", "background: rgba(236,72,153,0.15); color: #f472b6;"
+        elif cat == "startup":
+            return "startup", "🚀 스타트업", "background: rgba(245,158,11,0.15); color: #fbbf24;"
+        else:
+            return "manufacturing", "🏭 제조AI", "background: rgba(56,189,248,0.15); color: #38bdf8;"
 
     # Generate Top 10 HTML Cards
     top_10_html = ""
     for idx, row in df_rec.head(10).iterrows():
         cat = str(row.get("category", "tech")).lower()
-        domain = "marketing" if cat == "marketing" else "manufacturing"
+        domain, domain_label, domain_badge_style = get_domain_info(cat)
         color, cat_name = category_color_map.get(cat, ("#4b5563", cat.upper()))
         rank = idx + 1
         score = row.get("score", 0.0)
@@ -102,9 +114,6 @@ def build():
         source = row.get("source_name", "미디어")
         date_val = row.get("date", "")
         reason = row.get("recommendation_reason", "")
-
-        domain_label = "📢 마케팅" if domain == "marketing" else "🏭 제조AI"
-        domain_badge_style = "background: rgba(236,72,153,0.15); color: #f472b6;" if domain == "marketing" else "background: rgba(56,189,248,0.15); color: #38bdf8;"
 
         top_10_html += f"""
         <div class="card top-card" data-domain="{domain}" data-category="{cat}">
@@ -133,7 +142,7 @@ def build():
     table_rows_html = ""
     for idx, row in df_rec.iterrows():
         cat = str(row.get("category", "tech")).lower()
-        domain = "marketing" if cat == "marketing" else "manufacturing"
+        domain, domain_label, domain_badge_style = get_domain_info(cat)
         color, cat_name = category_color_map.get(cat, ("#4b5563", cat.upper()))
         rank = idx + 1
         score = row.get("score", 0.0)
@@ -142,9 +151,6 @@ def build():
         source = row.get("source_name", "미디어")
         date_val = row.get("date", "")
         reason = row.get("recommendation_reason", "")
-
-        domain_label = "📢 마케팅" if domain == "marketing" else "🏭 제조AI"
-        domain_badge_style = "background: rgba(236,72,153,0.15); color: #f472b6;" if domain == "marketing" else "background: rgba(56,189,248,0.15); color: #38bdf8;"
 
         table_rows_html += f"""
         <tr class="table-row" data-domain="{domain}" data-category="{cat}">
@@ -180,7 +186,8 @@ def build():
             --text-secondary: #94a3b8;
             --primary-accent: #38bdf8;
             --marketing-accent: #ec4899;
-            --primary-gradient: linear-gradient(135deg, #38bdf8 0%, #ec4899 100%);
+            --startup-accent: #f59e0b;
+            --primary-gradient: linear-gradient(135deg, #38bdf8 0%, #ec4899 50%, #f59e0b 100%);
             --card-hover: #243248;
         }}
         * {{ box-sizing: border-box; margin: 0; padding: 0; }}
@@ -233,7 +240,7 @@ def build():
             display: inline-block;
         }}
         
-        /* Domain Navbar (분야별 메뉴바) */
+        /* Domain Navbar (분야별 상단 메뉴바) */
         .domain-navbar {{
             display: flex;
             background: var(--surface-color);
@@ -246,18 +253,18 @@ def build():
         }}
         .nav-tab {{
             flex: 1;
-            min-width: 180px;
+            min-width: 160px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
             background: transparent;
             color: var(--text-secondary);
             border: none;
-            padding: 14px 20px;
+            padding: 13px 18px;
             border-radius: 10px;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.96rem;
             font-weight: 700;
             transition: all 0.25s ease;
         }}
@@ -274,18 +281,22 @@ def build():
             background: #db2777;
             box-shadow: 0 4px 12px rgba(219, 39, 119, 0.35);
         }}
+        .nav-tab.active.startup-active {{
+            background: #d97706;
+            box-shadow: 0 4px 12px rgba(217, 119, 6, 0.35);
+        }}
         .nav-badge {{
             background: rgba(0, 0, 0, 0.25);
-            padding: 2px 9px;
+            padding: 2px 8px;
             border-radius: 9999px;
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             font-weight: 700;
         }}
 
         /* KPI Metrics */
         .kpi-grid {{
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 16px;
             margin-bottom: 32px;
         }}
@@ -304,19 +315,19 @@ def build():
             border-color: #475569;
         }}
         .kpi-title {{
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             color: var(--text-secondary);
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }}
         .kpi-value {{
-            font-size: 1.85rem;
+            font-size: 1.8rem;
             font-weight: 800;
             color: var(--text-primary);
         }}
         .kpi-subtext {{
-            font-size: 0.78rem;
+            font-size: 0.76rem;
             color: #64748b;
         }}
 
@@ -565,7 +576,7 @@ def build():
             <div class="header-title">
                 <h1>{company_name} 통합 인텔리전스 마켓 에이전트</h1>
                 <div class="header-subtitle">
-                    분야별 실시간 모니터링: <strong>제조업 AI 비전 검사</strong> & <strong>AI B2B 마케팅 자동화</strong>
+                    분야별 실시간 모니터링: <strong>제조업 AI</strong> · <strong>AI 마케팅</strong> · <strong>스타트업 투자/생태계</strong>
                 </div>
             </div>
             <div class="header-meta">
@@ -574,7 +585,7 @@ def build():
             </div>
         </header>
 
-        <!-- TOP Menu Navigation Bar (분야별 메뉴바) -->
+        <!-- TOP Menu Navigation Bar (분야별 상단 메뉴바) -->
         <nav class="domain-navbar">
             <button class="nav-tab active" id="tabAll" onclick="switchDomain('all', this)">
                 <span>🌐</span> 전체 통합 인텔리전스 <span class="nav-badge" id="badgeAll">{len(df_rec)}</span>
@@ -585,6 +596,9 @@ def build():
             <button class="nav-tab" id="tabMkt" onclick="switchDomain('marketing', this)">
                 <span>📢</span> AI 마케팅 분야 <span class="nav-badge" id="badgeMkt">{mkt_count}</span>
             </button>
+            <button class="nav-tab" id="tabStp" onclick="switchDomain('startup', this)">
+                <span>🚀</span> 스타트업 투자 분야 <span class="nav-badge" id="badgeStp">{stp_count}</span>
+            </button>
         </nav>
 
         <!-- KPI Metrics Grid -->
@@ -592,29 +606,34 @@ def build():
             <div class="kpi-card">
                 <span class="kpi-title">총 수집 분석 기사</span>
                 <span class="kpi-value">{total_evaluated}건</span>
-                <span class="kpi-subtext">공개 RSS, 포털, 논문 실시간 집계</span>
+                <span class="kpi-subtext">RSS, 포털, 논문 실시간 집계</span>
             </div>
             <div class="kpi-card">
                 <span class="kpi-title">엄선 추천 인텔리전스</span>
                 <span class="kpi-value" style="color: #38bdf8;">{len(df_rec)}선</span>
-                <span class="kpi-subtext">맞춤형 가중치 및 LLM 전략 평가</span>
+                <span class="kpi-subtext">전략 가중치 및 LLM 종합 평가</span>
             </div>
             <div class="kpi-card">
-                <span class="kpi-title">제조업 AI 추천 비중</span>
+                <span class="kpi-title">제조업 AI 추천</span>
                 <span class="kpi-value" style="color: #60a5fa;">{mfg_count}건</span>
-                <span class="kpi-subtext">비전 품질검사 / 스마트공장 R&D</span>
+                <span class="kpi-subtext">비전 품질검사 / 제조 R&D</span>
             </div>
             <div class="kpi-card">
-                <span class="kpi-title">AI 마케팅 추천 비중</span>
+                <span class="kpi-title">AI 마케팅 추천</span>
                 <span class="kpi-value" style="color: #f472b6;">{mkt_count}건</span>
-                <span class="kpi-subtext">애드테크 / 마케팅 자동화 / CRM</span>
+                <span class="kpi-subtext">애드테크 / 마케팅 자동화</span>
+            </div>
+            <div class="kpi-card">
+                <span class="kpi-title">스타트업 투자 추천</span>
+                <span class="kpi-value" style="color: #fbbf24;">{stp_count}건</span>
+                <span class="kpi-subtext">TIPS / 시드·시리즈A / VC</span>
             </div>
         </div>
 
         <!-- Section: Top 10 Priority Intelligence -->
         <div class="section-header">
-            <h2 class="section-title">🔥 분야별 실시간 전략 추천 TOP 10</h2>
-            <span style="font-size: 0.88rem; color: #94a3b8;" id="topSubtext">현재 메뉴: 전체 인텔리전스</span>
+            <h2 class="section-title">🔥 실시간 전략 추천 TOP 10</h2>
+            <span style="font-size: 0.88rem; color: #94a3b8;" id="topSubtext">현재 메뉴: 전체 통합 인텔리전스</span>
         </div>
         <div class="top-grid" id="topGrid">
             {top_10_html}
@@ -628,6 +647,7 @@ def build():
         <div class="controls">
             <div class="filter-buttons">
                 <button class="filter-btn active" onclick="filterCategory('all', this)">전체 ({len(df_rec)})</button>
+                <button class="filter-btn" onclick="filterCategory('startup', this)">🚀 스타트업·투자 ({category_counts.get('startup', 0)})</button>
                 <button class="filter-btn" onclick="filterCategory('marketing', this)">📢 AI 마케팅 ({category_counts.get('marketing', 0)})</button>
                 <button class="filter-btn" onclick="filterCategory('tech', this)">🔬 기술·R&D ({category_counts.get('tech', 0)})</button>
                 <button class="filter-btn" onclick="filterCategory('policy', this)">🏛️ 정부지원·정책 ({category_counts.get('policy', 0)})</button>
@@ -642,7 +662,7 @@ def build():
                 <thead>
                     <tr>
                         <th>순위</th>
-                        <th>분야 / 카테고리</th>
+                        <th>분야 / 구분</th>
                         <th>기사 제목 및 추천 이유</th>
                         <th>출처 / 일자</th>
                         <th>점수</th>
@@ -657,7 +677,7 @@ def build():
 
         <footer>
             <p>Generated by <strong>Project 1: Market Intelligence Agent</strong> for {company_name}</p>
-            <p>Hosted on GitHub Pages | Static Multi-Domain Intelligence System</p>
+            <p>Hosted on GitHub Pages | Static 3-Domain Intelligence System</p>
         </footer>
     </div>
 
@@ -670,16 +690,20 @@ def build():
             document.querySelectorAll('.nav-tab').forEach(t => {{
                 t.classList.remove('active');
                 t.classList.remove('marketing-active');
+                t.classList.remove('startup-active');
             }});
             btn.classList.add('active');
             if (domain === 'marketing') {{
                 btn.classList.add('marketing-active');
+            }} else if (domain === 'startup') {{
+                btn.classList.add('startup-active');
             }}
 
             const subtext = document.getElementById('topSubtext');
             if (domain === 'all') subtext.innerText = '현재 메뉴: 전체 통합 인텔리전스';
             else if (domain === 'manufacturing') subtext.innerText = '현재 메뉴: 제조업 AI 인텔리전스';
             else if (domain === 'marketing') subtext.innerText = '현재 메뉴: AI 마케팅 인텔리전스';
+            else if (domain === 'startup') subtext.innerText = '현재 메뉴: 스타트업 투자·생태계 인텔리전스';
 
             applyAllFilters();
         }}

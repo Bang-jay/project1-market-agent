@@ -1,5 +1,5 @@
 company_name: NovaFactory AI
-business_area: 제조업 AI 비전 품질검사 및 AI B2B 마케팅 인텔리전스
+business_area: 제조업 AI 비전 품질검사, AI B2B 마케팅 및 스타트업 인텔리전스
 domains:
   manufacturing:
     name: 제조업 AI
@@ -23,6 +23,20 @@ domains:
       - 고객 분석
       - 전환율 최적화
       - CRM
+  startup:
+    name: 스타트업 투자·생태계
+    description: 스타트업 투자유치, TIPS, 시드/시리즈A, 액셀러레이팅, 데모데이
+    keywords:
+      - AI 스타트업
+      - 스타트업 투자
+      - TIPS
+      - 팁스
+      - 시드투자
+      - 시리즈A
+      - 액셀러레이터
+      - VC
+      - 데모데이
+      - 창업도약
 products:
   - 비전 기반 불량 탐지 SaaS
   - 제조 품질 리포트 자동화
@@ -31,6 +45,7 @@ target_market:
   - 중소·중견 제조기업
   - 스마트팩토리 구축 기업
   - B2B 마케팅 및 제조 솔루션 도입 기업
+  - 투자기관(VC/AC) 및 스타트업 생태계 파트너
 competitors:
   - VisionForge
   - InspectAI
@@ -47,10 +62,15 @@ interest_keywords:
   - AI 마케팅
   - 마케팅 자동화
   - 애드테크
+  - 스타트업
+  - 투자유치
+  - TIPS
 funding_keywords:
   - 창업지원
   - AI 바우처
   - 스마트공장
   - R&D
   - 사업화 자금
+  - 시드투자
+  - 팁스
 report_language: ko

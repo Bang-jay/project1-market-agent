@@ -13,7 +13,8 @@
             --text-secondary: #94a3b8;
             --primary-accent: #38bdf8;
             --marketing-accent: #ec4899;
-            --primary-gradient: linear-gradient(135deg, #38bdf8 0%, #ec4899 100%);
+            --startup-accent: #f59e0b;
+            --primary-gradient: linear-gradient(135deg, #38bdf8 0%, #ec4899 50%, #f59e0b 100%);
             --card-hover: #243248;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -66,7 +67,7 @@
             display: inline-block;
         }
         
-        /* Domain Navbar (분야별 메뉴바) */
+        /* Domain Navbar (분야별 상단 메뉴바) */
         .domain-navbar {
             display: flex;
             background: var(--surface-color);
@@ -79,18 +80,18 @@
         }
         .nav-tab {
             flex: 1;
-            min-width: 180px;
+            min-width: 160px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
             background: transparent;
             color: var(--text-secondary);
             border: none;
-            padding: 14px 20px;
+            padding: 13px 18px;
             border-radius: 10px;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.96rem;
             font-weight: 700;
             transition: all 0.25s ease;
         }
@@ -107,18 +108,22 @@
             background: #db2777;
             box-shadow: 0 4px 12px rgba(219, 39, 119, 0.35);
         }
+        .nav-tab.active.startup-active {
+            background: #d97706;
+            box-shadow: 0 4px 12px rgba(217, 119, 6, 0.35);
+        }
         .nav-badge {
             background: rgba(0, 0, 0, 0.25);
-            padding: 2px 9px;
+            padding: 2px 8px;
             border-radius: 9999px;
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             font-weight: 700;
         }
 
         /* KPI Metrics */
         .kpi-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 16px;
             margin-bottom: 32px;
         }
@@ -137,19 +142,19 @@
             border-color: #475569;
         }
         .kpi-title {
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             color: var(--text-secondary);
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
         .kpi-value {
-            font-size: 1.85rem;
+            font-size: 1.8rem;
             font-weight: 800;
             color: var(--text-primary);
         }
         .kpi-subtext {
-            font-size: 0.78rem;
+            font-size: 0.76rem;
             color: #64748b;
         }
 
@@ -398,25 +403,28 @@
             <div class="header-title">
                 <h1>NovaFactory AI 통합 인텔리전스 마켓 에이전트</h1>
                 <div class="header-subtitle">
-                    분야별 실시간 모니터링: <strong>제조업 AI 비전 검사</strong> & <strong>AI B2B 마케팅 자동화</strong>
+                    분야별 실시간 모니터링: <strong>제조업 AI</strong> · <strong>AI 마케팅</strong> · <strong>스타트업 투자/생태계</strong>
                 </div>
             </div>
             <div class="header-meta">
                 <span class="header-badge">추천 엔진: Gemini AI</span>
-                <span class="header-badge" style="background: #1e293b; color: #94a3b8;">생성: 2026-09-19 15:46:04</span>
+                <span class="header-badge" style="background: #1e293b; color: #94a3b8;">생성: 2026-09-19 16:26:21</span>
             </div>
         </header>
 
-        <!-- TOP Menu Navigation Bar (분야별 메뉴바) -->
+        <!-- TOP Menu Navigation Bar (분야별 상단 메뉴바) -->
         <nav class="domain-navbar">
             <button class="nav-tab active" id="tabAll" onclick="switchDomain('all', this)">
                 <span>🌐</span> 전체 통합 인텔리전스 <span class="nav-badge" id="badgeAll">30</span>
             </button>
             <button class="nav-tab" id="tabMfg" onclick="switchDomain('manufacturing', this)">
-                <span>🏭</span> 제조업 AI 분야 <span class="nav-badge" id="badgeMfg">15</span>
+                <span>🏭</span> 제조업 AI 분야 <span class="nav-badge" id="badgeMfg">10</span>
             </button>
             <button class="nav-tab" id="tabMkt" onclick="switchDomain('marketing', this)">
-                <span>📢</span> AI 마케팅 분야 <span class="nav-badge" id="badgeMkt">15</span>
+                <span>📢</span> AI 마케팅 분야 <span class="nav-badge" id="badgeMkt">10</span>
+            </button>
+            <button class="nav-tab" id="tabStp" onclick="switchDomain('startup', this)">
+                <span>🚀</span> 스타트업 투자 분야 <span class="nav-badge" id="badgeStp">10</span>
             </button>
         </nav>
 
@@ -424,114 +432,119 @@
         <div class="kpi-grid">
             <div class="kpi-card">
                 <span class="kpi-title">총 수집 분석 기사</span>
-                <span class="kpi-value">851건</span>
-                <span class="kpi-subtext">공개 RSS, 포털, 논문 실시간 집계</span>
+                <span class="kpi-value">1096건</span>
+                <span class="kpi-subtext">RSS, 포털, 논문 실시간 집계</span>
             </div>
             <div class="kpi-card">
                 <span class="kpi-title">엄선 추천 인텔리전스</span>
                 <span class="kpi-value" style="color: #38bdf8;">30선</span>
-                <span class="kpi-subtext">맞춤형 가중치 및 LLM 전략 평가</span>
+                <span class="kpi-subtext">전략 가중치 및 LLM 종합 평가</span>
             </div>
             <div class="kpi-card">
-                <span class="kpi-title">제조업 AI 추천 비중</span>
-                <span class="kpi-value" style="color: #60a5fa;">15건</span>
-                <span class="kpi-subtext">비전 품질검사 / 스마트공장 R&D</span>
+                <span class="kpi-title">제조업 AI 추천</span>
+                <span class="kpi-value" style="color: #60a5fa;">10건</span>
+                <span class="kpi-subtext">비전 품질검사 / 제조 R&D</span>
             </div>
             <div class="kpi-card">
-                <span class="kpi-title">AI 마케팅 추천 비중</span>
-                <span class="kpi-value" style="color: #f472b6;">15건</span>
-                <span class="kpi-subtext">애드테크 / 마케팅 자동화 / CRM</span>
+                <span class="kpi-title">AI 마케팅 추천</span>
+                <span class="kpi-value" style="color: #f472b6;">10건</span>
+                <span class="kpi-subtext">애드테크 / 마케팅 자동화</span>
+            </div>
+            <div class="kpi-card">
+                <span class="kpi-title">스타트업 투자 추천</span>
+                <span class="kpi-value" style="color: #fbbf24;">10건</span>
+                <span class="kpi-subtext">TIPS / 시드·시리즈A / VC</span>
             </div>
         </div>
 
         <!-- Section: Top 10 Priority Intelligence -->
         <div class="section-header">
-            <h2 class="section-title">🔥 분야별 실시간 전략 추천 TOP 10</h2>
-            <span style="font-size: 0.88rem; color: #94a3b8;" id="topSubtext">현재 메뉴: 전체 인텔리전스</span>
+            <h2 class="section-title">🔥 실시간 전략 추천 TOP 10</h2>
+            <span style="font-size: 0.88rem; color: #94a3b8;" id="topSubtext">현재 메뉴: 전체 통합 인텔리전스</span>
         </div>
         <div class="top-grid" id="topGrid">
             
-        <div class="card top-card" data-domain="manufacturing" data-category="competitor">
+        <div class="card top-card" data-domain="startup" data-category="startup">
             <div class="card-header">
                 <div class="rank-badge">#01</div>
                 <div class="badge-group">
-                    <span class="badge" style="background: rgba(56,189,248,0.15); color: #38bdf8;">🏭 제조AI</span>
-                    <span class="badge" style="background-color: #d9770620; color: #d97706; border-color: #d9770640;">경쟁사분석</span>
+                    <span class="badge" style="background: rgba(245,158,11,0.15); color: #fbbf24;">🚀 스타트업</span>
+                    <span class="badge" style="background-color: #f59e0b20; color: #f59e0b; border-color: #f59e0b40;">스타트업·투자</span>
                 </div>
-                <div class="score-badge">94.0점</div>
+                <div class="score-badge">88.0점</div>
             </div>
             <h3 class="card-title">
-                <a href="https://news.google.com/rss/articles/CBMickFVX3lxTFBrTnZzTEZNcjMzYjVpYTRyeFg0UFRmdU9aT19Gc1NSYXc5YlBGWEg1RlFBemJvZlBCOHFGTzBMbU53d2hBRnRzX1BGSlRBcVAzc05Relp5WHpCLUNtcjBpb3R4MGhNTUQ3bmdQbkF1eFRsZw?oc=5" target="_blank" rel="noopener noreferrer">세이지, AI 머신비전 품질관리 자동화 솔루션 선보여 - 인더스트리뉴스</a>
+                <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTFBCVDZtdGpnX1ZoSENTcnNGbmp6WmQ1N1h3blFNYVhHeXhXckdKZnNTcGswcmdPTnJLSUl1X3p0OUhPX0FrenZqR0psSGdYWFpNaEZLZVR3SXJ3Z0tzUDNv?oc=5" target="_blank" rel="noopener noreferrer">‘디지털트윈·배터리·생성형 AI, 미래산업 스타트업 투자 무대 열려’… 경기창조경제혁신센터, 제39회 스타트업 815 IR 연합 개최 - press.theleader.kr</a>
             </h3>
             <div class="card-reason">
-                <strong>추천 사유:</strong> [Gemini AI] 직접 경쟁사인 세이지가 당사 주력 분야와 직결된 AI 머신비전 품질관리 솔루션을 선보였으므로, 경쟁 기능 분석 및 차별화된 영업 전략 수립을 위해 면밀한 모니터링이 필요합니다.
+                <strong>추천 사유:</strong> [Gemini AI] 디지털트윈 및 배터리 등 당사의 제조 AI 비전 검사와 직결된 미래 제조 분야의 투자 동향을 파악하고, 스타트업 인텔리전스 관점에서 투자 유치 및 협업 기회를 모색하기에 적합합니다.
             </div>
             <div class="card-footer">
-                <span class="source-info">📰 인더스트리뉴스 · 📅 2025-11-04</span>
-                <a href="https://news.google.com/rss/articles/CBMickFVX3lxTFBrTnZzTEZNcjMzYjVpYTRyeFg0UFRmdU9aT19Gc1NSYXc5YlBGWEg1RlFBemJvZlBCOHFGTzBMbU53d2hBRnRzX1BGSlRBcVAzc05Relp5WHpCLUNtcjBpb3R4MGhNTUQ3bmdQbkF1eFRsZw?oc=5" target="_blank" rel="noopener noreferrer" class="link-btn">원문 보기 →</a>
+                <span class="source-info">📰 press.theleader.kr · 📅 2026-09-18</span>
+                <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTFBCVDZtdGpnX1ZoSENTcnNGbmp6WmQ1N1h3blFNYVhHeXhXckdKZnNTcGswcmdPTnJLSUl1X3p0OUhPX0FrenZqR0psSGdYWFpNaEZLZVR3SXJ3Z0tzUDNv?oc=5" target="_blank" rel="noopener noreferrer" class="link-btn">원문 보기 →</a>
             </div>
         </div>
         
-        <div class="card top-card" data-domain="manufacturing" data-category="competitor">
+        <div class="card top-card" data-domain="startup" data-category="startup">
             <div class="card-header">
                 <div class="rank-badge">#02</div>
                 <div class="badge-group">
-                    <span class="badge" style="background: rgba(56,189,248,0.15); color: #38bdf8;">🏭 제조AI</span>
-                    <span class="badge" style="background-color: #d9770620; color: #d97706; border-color: #d9770640;">경쟁사분석</span>
+                    <span class="badge" style="background: rgba(245,158,11,0.15); color: #fbbf24;">🚀 스타트업</span>
+                    <span class="badge" style="background-color: #f59e0b20; color: #f59e0b; border-color: #f59e0b40;">스타트업·투자</span>
                 </div>
-                <div class="score-badge">91.0점</div>
+                <div class="score-badge">88.0점</div>
             </div>
             <h3 class="card-title">
-                <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTFB1UjZ3aTZkVFVIeExnZlA5bVVqanpBdDlVTDJZajM0b3dyNTVuQzVXNjdWOGdBN1JTRXpQTlVGQk9CcmZMd2dVYjlveXZFZmxLcWoxUWdVQmR6SkdhVm5R?oc=5" target="_blank" rel="noopener noreferrer">[AW 베트남 2026] 엠비젼, 자동차 부품 외관검사 AI 비전 시스템 선보인다 - 헬로티</a>
+                <a href="https://news.google.com/rss/articles/CBMiZkFVX3lxTE54WW5hbG9ETnNCZ0NRN21mSU9qNHV5bFFmUVpiZmxMZzZsLXVoVzRaQy1nTjRvd1FIM3hyN3oyZGh4dHM3N3ZVTkJhRVVycGpTbjFEVWJFS0dWU1l1WlFQa0h6a0w1QQ?oc=5" target="_blank" rel="noopener noreferrer">‘팁스(TIPS)’ 민간 연계로 R&D 지원 다각화…스타트업 자금 부담 낮춰 - 약업신문</a>
             </h3>
             <div class="card-reason">
-                <strong>추천 사유:</strong> [Gemini AI] 경쟁사 엠비젼의 베트남 제조 시장 진출 및 자동차 부품 외관검사 AI 비전 기술 출품 동향은 당사의 동남아 글로벌 진출 및 비전 검사 SaaS 차별화 전략 수립에 직접적인 벤치마크 지표가 됩니다.
+                <strong>추천 사유:</strong> [Gemini AI] TIPS R&D 지원 다각화는 당사 기술 고도화를 위한 정책 자금 유치 기회를 넓힐 뿐 아니라, 스타트업 인텔리전스 사업의 유망 기업 데이터 분석 및 투자 연계 시너지를 극대화할 수 있기 때문입니다.
             </div>
             <div class="card-footer">
-                <span class="source-info">📰 헬로티 · 📅 2026-08-26</span>
-                <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTFB1UjZ3aTZkVFVIeExnZlA5bVVqanpBdDlVTDJZajM0b3dyNTVuQzVXNjdWOGdBN1JTRXpQTlVGQk9CcmZMd2dVYjlveXZFZmxLcWoxUWdVQmR6SkdhVm5R?oc=5" target="_blank" rel="noopener noreferrer" class="link-btn">원문 보기 →</a>
+                <span class="source-info">📰 약업신문 · 📅 2026-08-26</span>
+                <a href="https://news.google.com/rss/articles/CBMiZkFVX3lxTE54WW5hbG9ETnNCZ0NRN21mSU9qNHV5bFFmUVpiZmxMZzZsLXVoVzRaQy1nTjRvd1FIM3hyN3oyZGh4dHM3N3ZVTkJhRVVycGpTbjFEVWJFS0dWU1l1WlFQa0h6a0w1QQ?oc=5" target="_blank" rel="noopener noreferrer" class="link-btn">원문 보기 →</a>
             </div>
         </div>
         
-        <div class="card top-card" data-domain="manufacturing" data-category="competitor">
+        <div class="card top-card" data-domain="manufacturing" data-category="tech">
             <div class="card-header">
                 <div class="rank-badge">#03</div>
                 <div class="badge-group">
                     <span class="badge" style="background: rgba(56,189,248,0.15); color: #38bdf8;">🏭 제조AI</span>
-                    <span class="badge" style="background-color: #d9770620; color: #d97706; border-color: #d9770640;">경쟁사분석</span>
+                    <span class="badge" style="background-color: #2563eb20; color: #2563eb; border-color: #2563eb40;">기술·R&D</span>
                 </div>
-                <div class="score-badge">91.0점</div>
+                <div class="score-badge">88.0점</div>
             </div>
             <h3 class="card-title">
-                <a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE5kUEJyN2NVNlZ3QjBIem0yMWpmV2tfcHFZZlp5dTQ0OTQ0ekxUYm42dkl1ZkdQR3NYR3dBaURhaW5uSEY4cWtsRkpvaXJNdDJrWVRYLUtnRTFYazdoWTFiMg?oc=5" target="_blank" rel="noopener noreferrer">뉴로클, AI 비전검사 통한 반도체 품질검사 사례 소개 - 헬로티</a>
+                <a href="http://arxiv.org/abs/2606.21220v1" target="_blank" rel="noopener noreferrer">[R&D] A UAV-Mounted Sensor Network for Close-Range Inspection of Wind Turbine Rotor Blades</a>
             </h3>
             <div class="card-reason">
-                <strong>추천 사유:</strong> [Gemini AI] 직접 경쟁사인 뉴로클의 반도체 분야 비전검사 적용 사례는 당사 불량 탐지 SaaS의 타깃 시장 방어 및 기능 차별화 전략 수립을 위한 핵심 벤치마킹 데이터입니다.
+                <strong>추천 사유:</strong> [Gemini AI] 드론 기반 센서 및 비전 검사 기술은 당사의 AI 비전 품질검사 솔루션을 풍력 발전기 등 대형 산업 설비의 예지보전(Predictive Maintenance) 영역으로 확장하는 데 유용한 R&D 벤치마킹 자료입니다.
             </div>
             <div class="card-footer">
-                <span class="source-info">📰 헬로티 · 📅 2023-10-25</span>
-                <a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE5kUEJyN2NVNlZ3QjBIem0yMWpmV2tfcHFZZlp5dTQ0OTQ0ekxUYm42dkl1ZkdQR3NYR3dBaURhaW5uSEY4cWtsRkpvaXJNdDJrWVRYLUtnRTFYazdoWTFiMg?oc=5" target="_blank" rel="noopener noreferrer" class="link-btn">원문 보기 →</a>
+                <span class="source-info">📰 ArXiv · 📅 2026-06-19</span>
+                <a href="http://arxiv.org/abs/2606.21220v1" target="_blank" rel="noopener noreferrer" class="link-btn">원문 보기 →</a>
             </div>
         </div>
         
-        <div class="card top-card" data-domain="manufacturing" data-category="competitor">
+        <div class="card top-card" data-domain="startup" data-category="startup">
             <div class="card-header">
                 <div class="rank-badge">#04</div>
                 <div class="badge-group">
-                    <span class="badge" style="background: rgba(56,189,248,0.15); color: #38bdf8;">🏭 제조AI</span>
-                    <span class="badge" style="background-color: #d9770620; color: #d97706; border-color: #d9770640;">경쟁사분석</span>
+                    <span class="badge" style="background: rgba(245,158,11,0.15); color: #fbbf24;">🚀 스타트업</span>
+                    <span class="badge" style="background-color: #f59e0b20; color: #f59e0b; border-color: #f59e0b40;">스타트업·투자</span>
                 </div>
-                <div class="score-badge">91.0점</div>
+                <div class="score-badge">86.5점</div>
             </div>
             <h3 class="card-title">
-                <a href="https://news.google.com/rss/articles/CBMicEFVX3lxTE95OUZMNlJCc3hrM2NOdTJweWdabWQxeTNEaXVCWW5wT3FPYWl2aE5KdDBueFI5VWdVclEySjFOYTFtYlVvWG4xWHFtMDdhbzRpOTgtX1Jxa0JPUXJfUjMwMm8xamRnQ0k5LVJaNWFJZFHSAXRBVV95cUxOUkJ3WjZMc1I4ZGZUQk55ek1FNDdoOXFMWTBlcHMwR0F2bzR3djFuUXhFSmZBbUZsN3BzRFZmcGxRRlFaNXhnV3NEVWtsWnY4ME5BNTlRVDFzN1F3cFA0LWRFdUZxVFBNNk5WWDM2cGx1eVpyMw?oc=5" target="_blank" rel="noopener noreferrer">AI 비전검사 자동화 시스템 전문기업 (주)인더스트리얼AI - 플라스틱코리아</a>
+                <a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE9CdEJ4U25YT1dsUkJlc05qRGVEMEdHUExucEE0QUN2c3lyX2ZLaTlMT0xicXJxcE5QUUVFaTZPSTUxN1hocFY5VTJNWTBySjlaSmRtR2NlX3BadUZFc0FPZnJFekhEMFVPTi1nTA?oc=5" target="_blank" rel="noopener noreferrer">한국공학대 이대현 교수 창업기업 팁스 선정.. 'AI/3D 작업지시서 자동화 기술 개발' - 베리타스알파</a>
             </h3>
             <div class="card-reason">
-                <strong>추천 사유:</strong> [Gemini AI] 직접 경쟁사인 인더스트리얼AI의 플라스틱 제조 분야 비전검사 자동화 진입 동향을 분석하여 당사 SaaS형 솔루션의 기술적 차별화 및 타깃 시장 방어 전략을 수립하는 데 중요한 정보입니다.
+                <strong>추천 사유:</strong> [Gemini AI] 제조 현장 특화 AI/3D 작업지시서 기술은 당사의 제조 AI 비전 솔루션과 스마트팩토리 파이프라인 연계 협업이 유망하며, 팁스 선정 기업 모니터링을 통한 스타트업 인텔리전스 및 전략적 파트너십 구축 관점에서 주목할 가치가 있습니다.
             </div>
             <div class="card-footer">
-                <span class="source-info">📰 플라스틱코리아 · 📅 2022-11-04</span>
-                <a href="https://news.google.com/rss/articles/CBMicEFVX3lxTE95OUZMNlJCc3hrM2NOdTJweWdabWQxeTNEaXVCWW5wT3FPYWl2aE5KdDBueFI5VWdVclEySjFOYTFtYlVvWG4xWHFtMDdhbzRpOTgtX1Jxa0JPUXJfUjMwMm8xamRnQ0k5LVJaNWFJZFHSAXRBVV95cUxOUkJ3WjZMc1I4ZGZUQk55ek1FNDdoOXFMWTBlcHMwR0F2bzR3djFuUXhFSmZBbUZsN3BzRFZmcGxRRlFaNXhnV3NEVWtsWnY4ME5BNTlRVDFzN1F3cFA0LWRFdUZxVFBNNk5WWDM2cGx1eVpyMw?oc=5" target="_blank" rel="noopener noreferrer" class="link-btn">원문 보기 →</a>
+                <span class="source-info">📰 베리타스알파 · 📅 2026-09-10</span>
+                <a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE9CdEJ4U25YT1dsUkJlc05qRGVEMEdHUExucEE0QUN2c3lyX2ZLaTlMT0xicXJxcE5QUUVFaTZPSTUxN1hocFY5VTJNWTBySjlaSmRtR2NlX3BadUZFc0FPZnJFekhEMFVPTi1nTA?oc=5" target="_blank" rel="noopener noreferrer" class="link-btn">원문 보기 →</a>
             </div>
         </div>
         
@@ -542,38 +555,38 @@
                     <span class="badge" style="background: rgba(236,72,153,0.15); color: #f472b6;">📢 마케팅</span>
                     <span class="badge" style="background-color: #ec489920; color: #ec4899; border-color: #ec489940;">AI 마케팅·애드테크</span>
                 </div>
-                <div class="score-badge">87.0점</div>
-            </div>
-            <h3 class="card-title">
-                <a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE9sbE8zdkg3U1VtdHFSZ3BMQlhRN1VjNG5UUTN1cjBoMkVjS1lUS3VIbnNxRHAzMEZuQVo4ZzdYMXRDamVWVWxDLUlTa2V5elNwdnpkVUFTSnVndDU5aE50TFl0WDUtU0R3NlE?oc=5" target="_blank" rel="noopener noreferrer">AI 마케팅 자동화 기능 통합한 ‘마케팅 오케스트레이션’...업무 효율성·비즈니스 성과 향상 - 지티티코리아</a>
-            </h3>
-            <div class="card-reason">
-                <strong>추천 사유:</strong> [Gemini AI] 당사의 AI B2B 마케팅 인텔리전스 솔루션에 마케팅 오케스트레이션 개념을 접목하여 콘텐츠 생성부터 성과 분석까지의 워크플로우 자동화를 고도화하는 데 유용한 벤치마킹 인사이트를 제공합니다.
-            </div>
-            <div class="card-footer">
-                <span class="source-info">📰 지티티코리아 · 📅 2025-05-26</span>
-                <a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE9sbE8zdkg3U1VtdHFSZ3BMQlhRN1VjNG5UUTN1cjBoMkVjS1lUS3VIbnNxRHAzMEZuQVo4ZzdYMXRDamVWVWxDLUlTa2V5elNwdnpkVUFTSnVndDU5aE50TFl0WDUtU0R3NlE?oc=5" target="_blank" rel="noopener noreferrer" class="link-btn">원문 보기 →</a>
-            </div>
-        </div>
-        
-        <div class="card top-card" data-domain="marketing" data-category="marketing">
-            <div class="card-header">
-                <div class="rank-badge">#06</div>
-                <div class="badge-group">
-                    <span class="badge" style="background: rgba(236,72,153,0.15); color: #f472b6;">📢 마케팅</span>
-                    <span class="badge" style="background-color: #ec489920; color: #ec4899; border-color: #ec489940;">AI 마케팅·애드테크</span>
-                </div>
                 <div class="score-badge">85.0점</div>
             </div>
             <h3 class="card-title">
-                <a href="https://news.google.com/rss/articles/CBMib0FVX3lxTE54WXdqNk4yTnZpMEVhUENISXNSbkg3UWxHNWxlTUJfek96Mno4cjl1d0s0enBfQWo2UE9ReGJFcDFnVFlhLWRMVUtUaXJlcTlvS3BxUUZpZk5hZG1mcEZSdm9yRW0zNldIeDFuOTFNOA?oc=5" target="_blank" rel="noopener noreferrer">[분석-글로벌성공기업] [에이피피어] 마케팅 자동화의 진화…AI 플랫폼으로 글로벌 시장 정조준 - 비즈니스리포트</a>
+                <a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE5MQTdlWlE5dnh4MHk3aUREeENCTDVlb0lvcDN1OVIxdHVBeGZNME5HQ0NDc3NIcnZKb0N2c3RNSzNkaGZkcU04N3lPbEYzbHZGQXVGdEk5NDdNaFI2ekM0ZTdDUVp6LWFS0gFsQVVfeXFMUExxQkpjYTBKVnV4ZFNPQVM3c3lrT2pGMkthaUYtdEllR05NNjI0Sk5KZlBmMWE5UEhFbldNdll6Q0lVN28wZmJJREQ5V3JTLVVnelg3TWRGZzlhcW9CNUE2Nlpza0VJWFZyS1Bv?oc=5" target="_blank" rel="noopener noreferrer">어센트 AI, 일본 헬스케어·금융 마케팅 AX 공략…연매출 3억엔 정조준 - 스타트업엔(StartupN)</a>
             </h3>
             <div class="card-reason">
-                <strong>추천 사유:</strong> [Gemini AI] 글로벌 AI 마케팅 선도 기업인 에이피피어의 성공 모델은 당사의 AI B2B 마케팅 인텔리전스 솔루션 고도화와 글로벌 시장 확장 전략 수립에 중요한 벤치마킹 인사이트를 제공합니다.
+                <strong>추천 사유:</strong> [Gemini AI] 국내 마케팅 AI 스타트업이 일본 특화 버티컬 시장(헬스케어·금융)을 타깃해 AX 사업 모델을 확장하는 전략은 당사의 AI B2B 마케팅 글로벌 진출 및 수익화 벤치마킹 자료로 유용합니다.
             </div>
             <div class="card-footer">
-                <span class="source-info">📰 비즈니스리포트 · 📅 2026-07-16</span>
-                <a href="https://news.google.com/rss/articles/CBMib0FVX3lxTE54WXdqNk4yTnZpMEVhUENISXNSbkg3UWxHNWxlTUJfek96Mno4cjl1d0s0enBfQWo2UE9ReGJFcDFnVFlhLWRMVUtUaXJlcTlvS3BxUUZpZk5hZG1mcEZSdm9yRW0zNldIeDFuOTFNOA?oc=5" target="_blank" rel="noopener noreferrer" class="link-btn">원문 보기 →</a>
+                <span class="source-info">📰 스타트업엔(StartupN) · 📅 2026-07-07</span>
+                <a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE5MQTdlWlE5dnh4MHk3aUREeENCTDVlb0lvcDN1OVIxdHVBeGZNME5HQ0NDc3NIcnZKb0N2c3RNSzNkaGZkcU04N3lPbEYzbHZGQXVGdEk5NDdNaFI2ekM0ZTdDUVp6LWFS0gFsQVVfeXFMUExxQkpjYTBKVnV4ZFNPQVM3c3lrT2pGMkthaUYtdEllR05NNjI0Sk5KZlBmMWE5UEhFbldNdll6Q0lVN28wZmJJREQ5V3JTLVVnelg3TWRGZzlhcW9CNUE2Nlpza0VJWFZyS1Bv?oc=5" target="_blank" rel="noopener noreferrer" class="link-btn">원문 보기 →</a>
+            </div>
+        </div>
+        
+        <div class="card top-card" data-domain="startup" data-category="startup">
+            <div class="card-header">
+                <div class="rank-badge">#06</div>
+                <div class="badge-group">
+                    <span class="badge" style="background: rgba(245,158,11,0.15); color: #fbbf24;">🚀 스타트업</span>
+                    <span class="badge" style="background-color: #f59e0b20; color: #f59e0b; border-color: #f59e0b40;">스타트업·투자</span>
+                </div>
+                <div class="score-badge">84.0점</div>
+            </div>
+            <h3 class="card-title">
+                <a href="https://news.google.com/rss/articles/CBMiVEFVX3lxTE8wZWFvZXAzdjlxdGQ3TGZudnBobVVmSWdodkRENUIwaU5hczhqSmd6UFZRWU5Bek1SYnNUUUp2cHlPTmFfbmxxSU81X2hvZmlrRDk4Rg?oc=5" target="_blank" rel="noopener noreferrer">숭실대, AI 마케팅부터 투자유치까지⋯'스타트업 아카데미' 운영 - 이투데이</a>
+            </h3>
+            <div class="card-reason">
+                <strong>추천 사유:</strong> [Gemini AI] 숭실대의 AI 마케팅 및 투자유치 아카데미 프로그램은 당사의 AI B2B 마케팅 솔루션을 교육·실증 파트너십으로 연계하고 유망 초기 스타트업을 조기에 발굴할 수 있는 전략적 네트워킹 기회를 제공합니다.
+            </div>
+            <div class="card-footer">
+                <span class="source-info">📰 이투데이 · 📅 2026-08-11</span>
+                <a href="https://news.google.com/rss/articles/CBMiVEFVX3lxTE8wZWFvZXAzdjlxdGQ3TGZudnBobVVmSWdodkRENUIwaU5hczhqSmd6UFZRWU5Bek1SYnNUUUp2cHlPTmFfbmxxSU81X2hvZmlrRDk4Rg?oc=5" target="_blank" rel="noopener noreferrer" class="link-btn">원문 보기 →</a>
             </div>
         </div>
         
@@ -587,35 +600,35 @@
                 <div class="score-badge">84.0점</div>
             </div>
             <h3 class="card-title">
-                <a href="https://news.google.com/rss/articles/CBMiakFVX3lxTFBWNHY5QlV1ZUlyVHoxYm5yVTdxQjhjNHFpRjhvemRZQU94cFVHWTQ5ajVwcUkzdXF1OWlNTlI4TTJUYTNVYUR3R0VOUk9HOG9mTFBoY0FnR0tJVVU2a2w1VVY0N2dsbWJqd2c?oc=5" target="_blank" rel="noopener noreferrer">중소기업 희소식! 무료 AI 마케팅 자동화 플랜...SEO 최적화 콘텐츠 제작·광고 통합 지원 - 지티티코리아</a>
+                <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE5kU0hESDdPWmZUQ0pPSE82WWlzZUVzZ0ZyYnhva1Fpdnk0OHlmeHdRS0U1S2xJTzM2ZUI3SFZxTUN1Yk9fNUhKc1dsVWpqLWFrTTBiVkxoYzY1S0NnYXo4?oc=5" target="_blank" rel="noopener noreferrer">AI오투오, 멀티모달 콘텐츠 자동화 솔루션 ‘새로세로’로 창업진흥원 ‘모두의 창업 프로젝트’ 공급기업 선정 - 뉴스와이어</a>
             </h3>
             <div class="card-reason">
-                <strong>추천 사유:</strong> [Gemini AI] 당사의 AI 마케팅 인텔리전스 솔루션 사업과 직결된 중소기업 타깃 무료 자동화 플랜 사례로, SEO 콘텐츠 생성 및 광고 지원 모델을 벤치마킹해 가격 정책과 GTM 전략을 고도화하는 데 유용합니다.
+                <strong>추천 사유:</strong> [Gemini AI] 정부 지원사업 공급기업 선정 사례를 통해 당사 AI B2B 마케팅 솔루션의 공공 바우처 사업 진입 전략 및 스타트업 대상 콘텐츠 자동화 생태계 경쟁 동향을 파악할 수 있는 유의미한 레퍼런스입니다.
             </div>
             <div class="card-footer">
-                <span class="source-info">📰 지티티코리아 · 📅 2025-07-10</span>
-                <a href="https://news.google.com/rss/articles/CBMiakFVX3lxTFBWNHY5QlV1ZUlyVHoxYm5yVTdxQjhjNHFpRjhvemRZQU94cFVHWTQ5ajVwcUkzdXF1OWlNTlI4TTJUYTNVYUR3R0VOUk9HOG9mTFBoY0FnR0tJVVU2a2w1VVY0N2dsbWJqd2c?oc=5" target="_blank" rel="noopener noreferrer" class="link-btn">원문 보기 →</a>
+                <span class="source-info">📰 뉴스와이어 · 📅 2026-06-15</span>
+                <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE5kU0hESDdPWmZUQ0pPSE82WWlzZUVzZ0ZyYnhva1Fpdnk0OHlmeHdRS0U1S2xJTzM2ZUI3SFZxTUN1Yk9fNUhKc1dsVWpqLWFrTTBiVkxoYzY1S0NnYXo4?oc=5" target="_blank" rel="noopener noreferrer" class="link-btn">원문 보기 →</a>
             </div>
         </div>
         
-        <div class="card top-card" data-domain="marketing" data-category="marketing">
+        <div class="card top-card" data-domain="manufacturing" data-category="competitor">
             <div class="card-header">
                 <div class="rank-badge">#08</div>
                 <div class="badge-group">
-                    <span class="badge" style="background: rgba(236,72,153,0.15); color: #f472b6;">📢 마케팅</span>
-                    <span class="badge" style="background-color: #ec489920; color: #ec4899; border-color: #ec489940;">AI 마케팅·애드테크</span>
+                    <span class="badge" style="background: rgba(56,189,248,0.15); color: #38bdf8;">🏭 제조AI</span>
+                    <span class="badge" style="background-color: #d9770620; color: #d97706; border-color: #d9770640;">경쟁사분석</span>
                 </div>
                 <div class="score-badge">83.0점</div>
             </div>
             <h3 class="card-title">
-                <a href="https://news.google.com/rss/articles/CBMihwFBVV95cUxORWcyNWtENmdoN1dKS3ZBbVk0TWpjRTYzNHkyYS11UkFwbjhuZDVyWGpwV09BbnQ2blhVWHJmMWFBOVdvMk1hQUVrOWJKVTBwLWdKU0Q5NHBKN18wU2lsaGZPN0pDYWJBZEdKZ0ZCUTlqOEZNelFNVFRycHFQT19tWTFRNXhqb28?oc=5" target="_blank" rel="noopener noreferrer">크리에이팁, AI 애드테크 자회사 '캘리버' 설립… 마케팅 자동화 본격화 - 모바일한경</a>
+                <a href="https://news.google.com/rss/articles/CBMiSEFVX3lxTE10UXduSTRQck5tTFkxczJKVmQzZmpVT29YVU9jdjM0dmpBU0lST0kxbGpfS2ZPZVJJNkkwd0c3MHBzZnJhRlVoZg?oc=5" target="_blank" rel="noopener noreferrer">열화상 비전 솔루션 스타트업 ‘써모아이’, 9억 원 규모 프리 A 투자 유치 - 플래텀(Platum)</a>
             </h3>
             <div class="card-reason">
-                <strong>추천 사유:</strong> [Gemini AI] AI 마케팅 자동화 시장의 경쟁사 및 신규 플레이어 동향을 파악하여 당사의 AI 기반 마케팅 인텔리전스 및 콘텐츠 성과 분석 솔루션의 차별화 전략 수립에 참고할 수 있습니다.
+                <strong>추천 사유:</strong> [경쟁 분석] 스타트업/투자(스타트업) 부합 · 제조 비전 키워드(비전) 일치 · 관심 기술 분야(스타트업) 부합 · 비전/솔루션 시장 경쟁사 및 생태계 동향 - 주요 경쟁사 및 인접 비전 솔루션 사의 시장 점유 전략 대응 필요
             </div>
             <div class="card-footer">
-                <span class="source-info">📰 모바일한경 · 📅 2026-05-29</span>
-                <a href="https://news.google.com/rss/articles/CBMihwFBVV95cUxORWcyNWtENmdoN1dKS3ZBbVk0TWpjRTYzNHkyYS11UkFwbjhuZDVyWGpwV09BbnQ2blhVWHJmMWFBOVdvMk1hQUVrOWJKVTBwLWdKU0Q5NHBKN18wU2lsaGZPN0pDYWJBZEdKZ0ZCUTlqOEZNelFNVFRycHFQT19tWTFRNXhqb28?oc=5" target="_blank" rel="noopener noreferrer" class="link-btn">원문 보기 →</a>
+                <span class="source-info">📰 플래텀(Platum) · 📅 2023-11-20</span>
+                <a href="https://news.google.com/rss/articles/CBMiSEFVX3lxTE10UXduSTRQck5tTFkxczJKVmQzZmpVT29YVU9jdjM0dmpBU0lST0kxbGpfS2ZPZVJJNkkwd0c3MHBzZnJhRlVoZg?oc=5" target="_blank" rel="noopener noreferrer" class="link-btn">원문 보기 →</a>
             </div>
         </div>
         
@@ -626,38 +639,38 @@
                     <span class="badge" style="background: rgba(236,72,153,0.15); color: #f472b6;">📢 마케팅</span>
                     <span class="badge" style="background-color: #ec489920; color: #ec4899; border-color: #ec489940;">AI 마케팅·애드테크</span>
                 </div>
-                <div class="score-badge">82.0점</div>
+                <div class="score-badge">81.0점</div>
             </div>
             <h3 class="card-title">
-                <a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE1aRmExck9odm1hWERST3M3MmJuMGYxeWNyR1ZEZ3ZFNGl2NFhGVDl2THU0UWVBSUR2SElQOXhQejgzQ2U4cnFjNm5oMGlveWpOQW5PanA1cnU4a1ZlOEQxdTZjTXpsMkN1UWV4RA?oc=5" target="_blank" rel="noopener noreferrer">크리에이팁, AI 애드테크 자회사 '캘리버' 설립… 마케팅 자동화 본격화 - 한경매거진&북</a>
+                <a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTFAtYnhjMmF5MElmcU14Vm9ZQlRPLS16NUlmRTEzRzhJYTZ5dmNhSGpiQXVYTUFHZnpjY2J6OUp1dnA1Q004c0dZUzVGQVVIUG1pLWJXV0FfRjlUSVFSYnhJV1lrMXR0UzZV0gFsQVVfeXFMTWt3YzJBLUxVTGhPb0VHa3hfZWszamEyNWtvaWctZVJORnZnVWJyYjNpeWM3WVZONlFxMGRjQXNsUmt1UGpzNWVzRGlqc3g3dlA5OE15SmdFVmNJWjhGODhlSXo4V01sWkFsc1pX?oc=5" target="_blank" rel="noopener noreferrer">아이티유, 5만건 임상 데이터 기반 AI 뷰티 플랫폼 ‘RE:U’ 공개…K-뷰티 디지털 전환 시동 - 스타트업엔(StartupN)</a>
             </h3>
             <div class="card-reason">
-                <strong>추천 사유:</strong> [Gemini AI] 당사의 AI 기반 B2B 마케팅 인텔리전스 솔루션과 연계하여 마케팅 자동화 기술 트렌드 및 애드테크 시장 경쟁 현황을 벤치마킹하기에 유용한 사례입니다.
+                <strong>추천 사유:</strong> [AI 마케팅] 스타트업/투자(스타트업) 부합 · 디지털 마케팅 및 자동화 솔루션 동향 · 관심 기술 분야(ai, 스타트업) 부합 - B2B 마케팅 자동화, 애드테크 도입 및 고객 전환율 극대화 전략에 활용 가능
             </div>
             <div class="card-footer">
-                <span class="source-info">📰 한경매거진&북 · 📅 2026-05-29</span>
-                <a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE1aRmExck9odm1hWERST3M3MmJuMGYxeWNyR1ZEZ3ZFNGl2NFhGVDl2THU0UWVBSUR2SElQOXhQejgzQ2U4cnFjNm5oMGlveWpOQW5PanA1cnU4a1ZlOEQxdTZjTXpsMkN1UWV4RA?oc=5" target="_blank" rel="noopener noreferrer" class="link-btn">원문 보기 →</a>
+                <span class="source-info">📰 스타트업엔(StartupN) · 📅 2026-06-10</span>
+                <a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTFAtYnhjMmF5MElmcU14Vm9ZQlRPLS16NUlmRTEzRzhJYTZ5dmNhSGpiQXVYTUFHZnpjY2J6OUp1dnA1Q004c0dZUzVGQVVIUG1pLWJXV0FfRjlUSVFSYnhJV1lrMXR0UzZV0gFsQVVfeXFMTWt3YzJBLUxVTGhPb0VHa3hfZWszamEyNWtvaWctZVJORnZnVWJyYjNpeWM3WVZONlFxMGRjQXNsUmt1UGpzNWVzRGlqc3g3dlA5OE15SmdFVmNJWjhGODhlSXo4V01sWkFsc1pX?oc=5" target="_blank" rel="noopener noreferrer" class="link-btn">원문 보기 →</a>
             </div>
         </div>
         
-        <div class="card top-card" data-domain="marketing" data-category="marketing">
+        <div class="card top-card" data-domain="manufacturing" data-category="tech">
             <div class="card-header">
                 <div class="rank-badge">#10</div>
                 <div class="badge-group">
-                    <span class="badge" style="background: rgba(236,72,153,0.15); color: #f472b6;">📢 마케팅</span>
-                    <span class="badge" style="background-color: #ec489920; color: #ec4899; border-color: #ec489940;">AI 마케팅·애드테크</span>
+                    <span class="badge" style="background: rgba(56,189,248,0.15); color: #38bdf8;">🏭 제조AI</span>
+                    <span class="badge" style="background-color: #2563eb20; color: #2563eb; border-color: #2563eb40;">기술·R&D</span>
                 </div>
-                <div class="score-badge">81.5점</div>
+                <div class="score-badge">81.0점</div>
             </div>
             <h3 class="card-title">
-                <a href="https://news.google.com/rss/articles/CBMia0FVX3lxTE5VMkdJVkZBZTNHcVRKdk04VktNV29sS3RSZnpGbFQxSEJuSGFRM3p6d3JwdTluMmdVMnhwUzlvY1FHbVJJZVBzbnplY2VYcloydEItcjRxZjhZdU51VGJSNDlHT3FKT0NBc09v?oc=5" target="_blank" rel="noopener noreferrer">메타플라이어, 소상공인 11개사 대상 AI 마케팅 자동화 실증 - 데이터넷</a>
+                <a href="http://arxiv.org/abs/2605.23472v1" target="_blank" rel="noopener noreferrer">[R&D] Rethinking Transfer Learning for Industrial Inspection: DINOv3 vs. ImageNet Pretraining Across RGB and X-ray Tasks</a>
             </h3>
             <div class="card-reason">
-                <strong>추천 사유:</strong> [Gemini AI] AI 마케팅 자동화 실증 사례를 통해 솔루션 성과 검증 방식 및 시장 반응을 파악하여 자사의 AI B2B 마케팅 인텔리전스 고도화 및 시장 전략 수립에 벤치마킹할 수 있습니다.
+                <strong>추천 사유:</strong> [기술/R&D] 스타트업/투자(ir) 부합 · 제조 비전 키워드(defect, inspection) 일치 · 관심 기술 분야(ai) 부합 · 정부지원/사업화 기회(r&d) 포착 - 비전 불량 탐지 및 모델 정확도 고도화에 즉시 참고 가능한 기술 정보
             </div>
             <div class="card-footer">
-                <span class="source-info">📰 데이터넷 · 📅 2026-09-18</span>
-                <a href="https://news.google.com/rss/articles/CBMia0FVX3lxTE5VMkdJVkZBZTNHcVRKdk04VktNV29sS3RSZnpGbFQxSEJuSGFRM3p6d3JwdTluMmdVMnhwUzlvY1FHbVJJZVBzbnplY2VYcloydEItcjRxZjhZdU51VGJSNDlHT3FKT0NBc09v?oc=5" target="_blank" rel="noopener noreferrer" class="link-btn">원문 보기 →</a>
+                <span class="source-info">📰 ArXiv · 📅 2026-05-22</span>
+                <a href="http://arxiv.org/abs/2605.23472v1" target="_blank" rel="noopener noreferrer" class="link-btn">원문 보기 →</a>
             </div>
         </div>
         
@@ -671,11 +684,12 @@
         <div class="controls">
             <div class="filter-buttons">
                 <button class="filter-btn active" onclick="filterCategory('all', this)">전체 (30)</button>
-                <button class="filter-btn" onclick="filterCategory('marketing', this)">📢 AI 마케팅 (15)</button>
-                <button class="filter-btn" onclick="filterCategory('tech', this)">🔬 기술·R&D (1)</button>
+                <button class="filter-btn" onclick="filterCategory('startup', this)">🚀 스타트업·투자 (10)</button>
+                <button class="filter-btn" onclick="filterCategory('marketing', this)">📢 AI 마케팅 (10)</button>
+                <button class="filter-btn" onclick="filterCategory('tech', this)">🔬 기술·R&D (9)</button>
                 <button class="filter-btn" onclick="filterCategory('policy', this)">🏛️ 정부지원·정책 (0)</button>
                 <button class="filter-btn" onclick="filterCategory('market', this)">📈 시장동향 (0)</button>
-                <button class="filter-btn" onclick="filterCategory('competitor', this)">⚔️ 경쟁사 (14)</button>
+                <button class="filter-btn" onclick="filterCategory('competitor', this)">⚔️ 경쟁사 (1)</button>
             </div>
             <input type="text" id="searchInput" class="search-input" placeholder="키워드/제목 실시간 검색..." onkeyup="applyAllFilters()">
         </div>
@@ -685,7 +699,7 @@
                 <thead>
                     <tr>
                         <th>순위</th>
-                        <th>분야 / 카테고리</th>
+                        <th>분야 / 구분</th>
                         <th>기사 제목 및 추천 이유</th>
                         <th>출처 / 일자</th>
                         <th>점수</th>
@@ -694,64 +708,64 @@
                 </thead>
                 <tbody id="tableBody">
                     
-        <tr class="table-row" data-domain="manufacturing" data-category="competitor">
+        <tr class="table-row" data-domain="startup" data-category="startup">
             <td class="td-rank">#1</td>
             <td>
-                <span class="badge" style="background: rgba(56,189,248,0.15); color: #38bdf8; margin-bottom: 4px; display: inline-block;">🏭 제조AI</span><br>
-                <span class="badge" style="background-color: #d9770620; color: #d97706;">경쟁사분석</span>
+                <span class="badge" style="background: rgba(245,158,11,0.15); color: #fbbf24; margin-bottom: 4px; display: inline-block;">🚀 스타트업</span><br>
+                <span class="badge" style="background-color: #f59e0b20; color: #f59e0b;">스타트업·투자</span>
             </td>
             <td class="td-title">
-                <a href="https://news.google.com/rss/articles/CBMickFVX3lxTFBrTnZzTEZNcjMzYjVpYTRyeFg0UFRmdU9aT19Gc1NSYXc5YlBGWEg1RlFBemJvZlBCOHFGTzBMbU53d2hBRnRzX1BGSlRBcVAzc05Relp5WHpCLUNtcjBpb3R4MGhNTUQ3bmdQbkF1eFRsZw?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">세이지, AI 머신비전 품질관리 자동화 솔루션 선보여 - 인더스트리뉴스</a>
-                <div class="row-reason">[Gemini AI] 직접 경쟁사인 세이지가 당사 주력 분야와 직결된 AI 머신비전 품질관리 솔루션을 선보였으므로, 경쟁 기능 분석 및 차별화된 영업 전략 수립을 위해 면밀한 모니터링이 필요합니다.</div>
+                <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTFBCVDZtdGpnX1ZoSENTcnNGbmp6WmQ1N1h3blFNYVhHeXhXckdKZnNTcGswcmdPTnJLSUl1X3p0OUhPX0FrenZqR0psSGdYWFpNaEZLZVR3SXJ3Z0tzUDNv?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">‘디지털트윈·배터리·생성형 AI, 미래산업 스타트업 투자 무대 열려’… 경기창조경제혁신센터, 제39회 스타트업 815 IR 연합 개최 - press.theleader.kr</a>
+                <div class="row-reason">[Gemini AI] 디지털트윈 및 배터리 등 당사의 제조 AI 비전 검사와 직결된 미래 제조 분야의 투자 동향을 파악하고, 스타트업 인텔리전스 관점에서 투자 유치 및 협업 기회를 모색하기에 적합합니다.</div>
             </td>
-            <td class="td-meta">인더스트리뉴스<br><small style="color: #64748b;">2025-11-04</small></td>
-            <td class="td-score"><strong>94.0</strong></td>
-            <td><a href="https://news.google.com/rss/articles/CBMickFVX3lxTFBrTnZzTEZNcjMzYjVpYTRyeFg0UFRmdU9aT19Gc1NSYXc5YlBGWEg1RlFBemJvZlBCOHFGTzBMbU53d2hBRnRzX1BGSlRBcVAzc05Relp5WHpCLUNtcjBpb3R4MGhNTUQ3bmdQbkF1eFRsZw?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
+            <td class="td-meta">press.theleader.kr<br><small style="color: #64748b;">2026-09-18</small></td>
+            <td class="td-score"><strong>88.0</strong></td>
+            <td><a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTFBCVDZtdGpnX1ZoSENTcnNGbmp6WmQ1N1h3blFNYVhHeXhXckdKZnNTcGswcmdPTnJLSUl1X3p0OUhPX0FrenZqR0psSGdYWFpNaEZLZVR3SXJ3Z0tzUDNv?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
         </tr>
         
-        <tr class="table-row" data-domain="manufacturing" data-category="competitor">
+        <tr class="table-row" data-domain="startup" data-category="startup">
             <td class="td-rank">#2</td>
             <td>
-                <span class="badge" style="background: rgba(56,189,248,0.15); color: #38bdf8; margin-bottom: 4px; display: inline-block;">🏭 제조AI</span><br>
-                <span class="badge" style="background-color: #d9770620; color: #d97706;">경쟁사분석</span>
+                <span class="badge" style="background: rgba(245,158,11,0.15); color: #fbbf24; margin-bottom: 4px; display: inline-block;">🚀 스타트업</span><br>
+                <span class="badge" style="background-color: #f59e0b20; color: #f59e0b;">스타트업·투자</span>
             </td>
             <td class="td-title">
-                <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTFB1UjZ3aTZkVFVIeExnZlA5bVVqanpBdDlVTDJZajM0b3dyNTVuQzVXNjdWOGdBN1JTRXpQTlVGQk9CcmZMd2dVYjlveXZFZmxLcWoxUWdVQmR6SkdhVm5R?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">[AW 베트남 2026] 엠비젼, 자동차 부품 외관검사 AI 비전 시스템 선보인다 - 헬로티</a>
-                <div class="row-reason">[Gemini AI] 경쟁사 엠비젼의 베트남 제조 시장 진출 및 자동차 부품 외관검사 AI 비전 기술 출품 동향은 당사의 동남아 글로벌 진출 및 비전 검사 SaaS 차별화 전략 수립에 직접적인 벤치마크 지표가 됩니다.</div>
+                <a href="https://news.google.com/rss/articles/CBMiZkFVX3lxTE54WW5hbG9ETnNCZ0NRN21mSU9qNHV5bFFmUVpiZmxMZzZsLXVoVzRaQy1nTjRvd1FIM3hyN3oyZGh4dHM3N3ZVTkJhRVVycGpTbjFEVWJFS0dWU1l1WlFQa0h6a0w1QQ?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">‘팁스(TIPS)’ 민간 연계로 R&D 지원 다각화…스타트업 자금 부담 낮춰 - 약업신문</a>
+                <div class="row-reason">[Gemini AI] TIPS R&D 지원 다각화는 당사 기술 고도화를 위한 정책 자금 유치 기회를 넓힐 뿐 아니라, 스타트업 인텔리전스 사업의 유망 기업 데이터 분석 및 투자 연계 시너지를 극대화할 수 있기 때문입니다.</div>
             </td>
-            <td class="td-meta">헬로티<br><small style="color: #64748b;">2026-08-26</small></td>
-            <td class="td-score"><strong>91.0</strong></td>
-            <td><a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTFB1UjZ3aTZkVFVIeExnZlA5bVVqanpBdDlVTDJZajM0b3dyNTVuQzVXNjdWOGdBN1JTRXpQTlVGQk9CcmZMd2dVYjlveXZFZmxLcWoxUWdVQmR6SkdhVm5R?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
+            <td class="td-meta">약업신문<br><small style="color: #64748b;">2026-08-26</small></td>
+            <td class="td-score"><strong>88.0</strong></td>
+            <td><a href="https://news.google.com/rss/articles/CBMiZkFVX3lxTE54WW5hbG9ETnNCZ0NRN21mSU9qNHV5bFFmUVpiZmxMZzZsLXVoVzRaQy1nTjRvd1FIM3hyN3oyZGh4dHM3N3ZVTkJhRVVycGpTbjFEVWJFS0dWU1l1WlFQa0h6a0w1QQ?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
         </tr>
         
-        <tr class="table-row" data-domain="manufacturing" data-category="competitor">
+        <tr class="table-row" data-domain="manufacturing" data-category="tech">
             <td class="td-rank">#3</td>
             <td>
                 <span class="badge" style="background: rgba(56,189,248,0.15); color: #38bdf8; margin-bottom: 4px; display: inline-block;">🏭 제조AI</span><br>
-                <span class="badge" style="background-color: #d9770620; color: #d97706;">경쟁사분석</span>
+                <span class="badge" style="background-color: #2563eb20; color: #2563eb;">기술·R&D</span>
             </td>
             <td class="td-title">
-                <a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE5kUEJyN2NVNlZ3QjBIem0yMWpmV2tfcHFZZlp5dTQ0OTQ0ekxUYm42dkl1ZkdQR3NYR3dBaURhaW5uSEY4cWtsRkpvaXJNdDJrWVRYLUtnRTFYazdoWTFiMg?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">뉴로클, AI 비전검사 통한 반도체 품질검사 사례 소개 - 헬로티</a>
-                <div class="row-reason">[Gemini AI] 직접 경쟁사인 뉴로클의 반도체 분야 비전검사 적용 사례는 당사 불량 탐지 SaaS의 타깃 시장 방어 및 기능 차별화 전략 수립을 위한 핵심 벤치마킹 데이터입니다.</div>
+                <a href="http://arxiv.org/abs/2606.21220v1" target="_blank" rel="noopener noreferrer" class="title-link">[R&D] A UAV-Mounted Sensor Network for Close-Range Inspection of Wind Turbine Rotor Blades</a>
+                <div class="row-reason">[Gemini AI] 드론 기반 센서 및 비전 검사 기술은 당사의 AI 비전 품질검사 솔루션을 풍력 발전기 등 대형 산업 설비의 예지보전(Predictive Maintenance) 영역으로 확장하는 데 유용한 R&D 벤치마킹 자료입니다.</div>
             </td>
-            <td class="td-meta">헬로티<br><small style="color: #64748b;">2023-10-25</small></td>
-            <td class="td-score"><strong>91.0</strong></td>
-            <td><a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE5kUEJyN2NVNlZ3QjBIem0yMWpmV2tfcHFZZlp5dTQ0OTQ0ekxUYm42dkl1ZkdQR3NYR3dBaURhaW5uSEY4cWtsRkpvaXJNdDJrWVRYLUtnRTFYazdoWTFiMg?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
+            <td class="td-meta">ArXiv<br><small style="color: #64748b;">2026-06-19</small></td>
+            <td class="td-score"><strong>88.0</strong></td>
+            <td><a href="http://arxiv.org/abs/2606.21220v1" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
         </tr>
         
-        <tr class="table-row" data-domain="manufacturing" data-category="competitor">
+        <tr class="table-row" data-domain="startup" data-category="startup">
             <td class="td-rank">#4</td>
             <td>
-                <span class="badge" style="background: rgba(56,189,248,0.15); color: #38bdf8; margin-bottom: 4px; display: inline-block;">🏭 제조AI</span><br>
-                <span class="badge" style="background-color: #d9770620; color: #d97706;">경쟁사분석</span>
+                <span class="badge" style="background: rgba(245,158,11,0.15); color: #fbbf24; margin-bottom: 4px; display: inline-block;">🚀 스타트업</span><br>
+                <span class="badge" style="background-color: #f59e0b20; color: #f59e0b;">스타트업·투자</span>
             </td>
             <td class="td-title">
-                <a href="https://news.google.com/rss/articles/CBMicEFVX3lxTE95OUZMNlJCc3hrM2NOdTJweWdabWQxeTNEaXVCWW5wT3FPYWl2aE5KdDBueFI5VWdVclEySjFOYTFtYlVvWG4xWHFtMDdhbzRpOTgtX1Jxa0JPUXJfUjMwMm8xamRnQ0k5LVJaNWFJZFHSAXRBVV95cUxOUkJ3WjZMc1I4ZGZUQk55ek1FNDdoOXFMWTBlcHMwR0F2bzR3djFuUXhFSmZBbUZsN3BzRFZmcGxRRlFaNXhnV3NEVWtsWnY4ME5BNTlRVDFzN1F3cFA0LWRFdUZxVFBNNk5WWDM2cGx1eVpyMw?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">AI 비전검사 자동화 시스템 전문기업 (주)인더스트리얼AI - 플라스틱코리아</a>
-                <div class="row-reason">[Gemini AI] 직접 경쟁사인 인더스트리얼AI의 플라스틱 제조 분야 비전검사 자동화 진입 동향을 분석하여 당사 SaaS형 솔루션의 기술적 차별화 및 타깃 시장 방어 전략을 수립하는 데 중요한 정보입니다.</div>
+                <a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE9CdEJ4U25YT1dsUkJlc05qRGVEMEdHUExucEE0QUN2c3lyX2ZLaTlMT0xicXJxcE5QUUVFaTZPSTUxN1hocFY5VTJNWTBySjlaSmRtR2NlX3BadUZFc0FPZnJFekhEMFVPTi1nTA?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">한국공학대 이대현 교수 창업기업 팁스 선정.. 'AI/3D 작업지시서 자동화 기술 개발' - 베리타스알파</a>
+                <div class="row-reason">[Gemini AI] 제조 현장 특화 AI/3D 작업지시서 기술은 당사의 제조 AI 비전 솔루션과 스마트팩토리 파이프라인 연계 협업이 유망하며, 팁스 선정 기업 모니터링을 통한 스타트업 인텔리전스 및 전략적 파트너십 구축 관점에서 주목할 가치가 있습니다.</div>
             </td>
-            <td class="td-meta">플라스틱코리아<br><small style="color: #64748b;">2022-11-04</small></td>
-            <td class="td-score"><strong>91.0</strong></td>
-            <td><a href="https://news.google.com/rss/articles/CBMicEFVX3lxTE95OUZMNlJCc3hrM2NOdTJweWdabWQxeTNEaXVCWW5wT3FPYWl2aE5KdDBueFI5VWdVclEySjFOYTFtYlVvWG4xWHFtMDdhbzRpOTgtX1Jxa0JPUXJfUjMwMm8xamRnQ0k5LVJaNWFJZFHSAXRBVV95cUxOUkJ3WjZMc1I4ZGZUQk55ek1FNDdoOXFMWTBlcHMwR0F2bzR3djFuUXhFSmZBbUZsN3BzRFZmcGxRRlFaNXhnV3NEVWtsWnY4ME5BNTlRVDFzN1F3cFA0LWRFdUZxVFBNNk5WWDM2cGx1eVpyMw?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
+            <td class="td-meta">베리타스알파<br><small style="color: #64748b;">2026-09-10</small></td>
+            <td class="td-score"><strong>86.5</strong></td>
+            <td><a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE9CdEJ4U25YT1dsUkJlc05qRGVEMEdHUExucEE0QUN2c3lyX2ZLaTlMT0xicXJxcE5QUUVFaTZPSTUxN1hocFY5VTJNWTBySjlaSmRtR2NlX3BadUZFc0FPZnJFekhEMFVPTi1nTA?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
         </tr>
         
         <tr class="table-row" data-domain="marketing" data-category="marketing">
@@ -761,27 +775,27 @@
                 <span class="badge" style="background-color: #ec489920; color: #ec4899;">AI 마케팅·애드테크</span>
             </td>
             <td class="td-title">
-                <a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE9sbE8zdkg3U1VtdHFSZ3BMQlhRN1VjNG5UUTN1cjBoMkVjS1lUS3VIbnNxRHAzMEZuQVo4ZzdYMXRDamVWVWxDLUlTa2V5elNwdnpkVUFTSnVndDU5aE50TFl0WDUtU0R3NlE?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">AI 마케팅 자동화 기능 통합한 ‘마케팅 오케스트레이션’...업무 효율성·비즈니스 성과 향상 - 지티티코리아</a>
-                <div class="row-reason">[Gemini AI] 당사의 AI B2B 마케팅 인텔리전스 솔루션에 마케팅 오케스트레이션 개념을 접목하여 콘텐츠 생성부터 성과 분석까지의 워크플로우 자동화를 고도화하는 데 유용한 벤치마킹 인사이트를 제공합니다.</div>
+                <a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE5MQTdlWlE5dnh4MHk3aUREeENCTDVlb0lvcDN1OVIxdHVBeGZNME5HQ0NDc3NIcnZKb0N2c3RNSzNkaGZkcU04N3lPbEYzbHZGQXVGdEk5NDdNaFI2ekM0ZTdDUVp6LWFS0gFsQVVfeXFMUExxQkpjYTBKVnV4ZFNPQVM3c3lrT2pGMkthaUYtdEllR05NNjI0Sk5KZlBmMWE5UEhFbldNdll6Q0lVN28wZmJJREQ5V3JTLVVnelg3TWRGZzlhcW9CNUE2Nlpza0VJWFZyS1Bv?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">어센트 AI, 일본 헬스케어·금융 마케팅 AX 공략…연매출 3억엔 정조준 - 스타트업엔(StartupN)</a>
+                <div class="row-reason">[Gemini AI] 국내 마케팅 AI 스타트업이 일본 특화 버티컬 시장(헬스케어·금융)을 타깃해 AX 사업 모델을 확장하는 전략은 당사의 AI B2B 마케팅 글로벌 진출 및 수익화 벤치마킹 자료로 유용합니다.</div>
             </td>
-            <td class="td-meta">지티티코리아<br><small style="color: #64748b;">2025-05-26</small></td>
-            <td class="td-score"><strong>87.0</strong></td>
-            <td><a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE9sbE8zdkg3U1VtdHFSZ3BMQlhRN1VjNG5UUTN1cjBoMkVjS1lUS3VIbnNxRHAzMEZuQVo4ZzdYMXRDamVWVWxDLUlTa2V5elNwdnpkVUFTSnVndDU5aE50TFl0WDUtU0R3NlE?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
+            <td class="td-meta">스타트업엔(StartupN)<br><small style="color: #64748b;">2026-07-07</small></td>
+            <td class="td-score"><strong>85.0</strong></td>
+            <td><a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE5MQTdlWlE5dnh4MHk3aUREeENCTDVlb0lvcDN1OVIxdHVBeGZNME5HQ0NDc3NIcnZKb0N2c3RNSzNkaGZkcU04N3lPbEYzbHZGQXVGdEk5NDdNaFI2ekM0ZTdDUVp6LWFS0gFsQVVfeXFMUExxQkpjYTBKVnV4ZFNPQVM3c3lrT2pGMkthaUYtdEllR05NNjI0Sk5KZlBmMWE5UEhFbldNdll6Q0lVN28wZmJJREQ5V3JTLVVnelg3TWRGZzlhcW9CNUE2Nlpza0VJWFZyS1Bv?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
         </tr>
         
-        <tr class="table-row" data-domain="marketing" data-category="marketing">
+        <tr class="table-row" data-domain="startup" data-category="startup">
             <td class="td-rank">#6</td>
             <td>
-                <span class="badge" style="background: rgba(236,72,153,0.15); color: #f472b6; margin-bottom: 4px; display: inline-block;">📢 마케팅</span><br>
-                <span class="badge" style="background-color: #ec489920; color: #ec4899;">AI 마케팅·애드테크</span>
+                <span class="badge" style="background: rgba(245,158,11,0.15); color: #fbbf24; margin-bottom: 4px; display: inline-block;">🚀 스타트업</span><br>
+                <span class="badge" style="background-color: #f59e0b20; color: #f59e0b;">스타트업·투자</span>
             </td>
             <td class="td-title">
-                <a href="https://news.google.com/rss/articles/CBMib0FVX3lxTE54WXdqNk4yTnZpMEVhUENISXNSbkg3UWxHNWxlTUJfek96Mno4cjl1d0s0enBfQWo2UE9ReGJFcDFnVFlhLWRMVUtUaXJlcTlvS3BxUUZpZk5hZG1mcEZSdm9yRW0zNldIeDFuOTFNOA?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">[분석-글로벌성공기업] [에이피피어] 마케팅 자동화의 진화…AI 플랫폼으로 글로벌 시장 정조준 - 비즈니스리포트</a>
-                <div class="row-reason">[Gemini AI] 글로벌 AI 마케팅 선도 기업인 에이피피어의 성공 모델은 당사의 AI B2B 마케팅 인텔리전스 솔루션 고도화와 글로벌 시장 확장 전략 수립에 중요한 벤치마킹 인사이트를 제공합니다.</div>
+                <a href="https://news.google.com/rss/articles/CBMiVEFVX3lxTE8wZWFvZXAzdjlxdGQ3TGZudnBobVVmSWdodkRENUIwaU5hczhqSmd6UFZRWU5Bek1SYnNUUUp2cHlPTmFfbmxxSU81X2hvZmlrRDk4Rg?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">숭실대, AI 마케팅부터 투자유치까지⋯'스타트업 아카데미' 운영 - 이투데이</a>
+                <div class="row-reason">[Gemini AI] 숭실대의 AI 마케팅 및 투자유치 아카데미 프로그램은 당사의 AI B2B 마케팅 솔루션을 교육·실증 파트너십으로 연계하고 유망 초기 스타트업을 조기에 발굴할 수 있는 전략적 네트워킹 기회를 제공합니다.</div>
             </td>
-            <td class="td-meta">비즈니스리포트<br><small style="color: #64748b;">2026-07-16</small></td>
-            <td class="td-score"><strong>85.0</strong></td>
-            <td><a href="https://news.google.com/rss/articles/CBMib0FVX3lxTE54WXdqNk4yTnZpMEVhUENISXNSbkg3UWxHNWxlTUJfek96Mno4cjl1d0s0enBfQWo2UE9ReGJFcDFnVFlhLWRMVUtUaXJlcTlvS3BxUUZpZk5hZG1mcEZSdm9yRW0zNldIeDFuOTFNOA?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
+            <td class="td-meta">이투데이<br><small style="color: #64748b;">2026-08-11</small></td>
+            <td class="td-score"><strong>84.0</strong></td>
+            <td><a href="https://news.google.com/rss/articles/CBMiVEFVX3lxTE8wZWFvZXAzdjlxdGQ3TGZudnBobVVmSWdodkRENUIwaU5hczhqSmd6UFZRWU5Bek1SYnNUUUp2cHlPTmFfbmxxSU81X2hvZmlrRDk4Rg?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
         </tr>
         
         <tr class="table-row" data-domain="marketing" data-category="marketing">
@@ -791,27 +805,27 @@
                 <span class="badge" style="background-color: #ec489920; color: #ec4899;">AI 마케팅·애드테크</span>
             </td>
             <td class="td-title">
-                <a href="https://news.google.com/rss/articles/CBMiakFVX3lxTFBWNHY5QlV1ZUlyVHoxYm5yVTdxQjhjNHFpRjhvemRZQU94cFVHWTQ5ajVwcUkzdXF1OWlNTlI4TTJUYTNVYUR3R0VOUk9HOG9mTFBoY0FnR0tJVVU2a2w1VVY0N2dsbWJqd2c?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">중소기업 희소식! 무료 AI 마케팅 자동화 플랜...SEO 최적화 콘텐츠 제작·광고 통합 지원 - 지티티코리아</a>
-                <div class="row-reason">[Gemini AI] 당사의 AI 마케팅 인텔리전스 솔루션 사업과 직결된 중소기업 타깃 무료 자동화 플랜 사례로, SEO 콘텐츠 생성 및 광고 지원 모델을 벤치마킹해 가격 정책과 GTM 전략을 고도화하는 데 유용합니다.</div>
+                <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE5kU0hESDdPWmZUQ0pPSE82WWlzZUVzZ0ZyYnhva1Fpdnk0OHlmeHdRS0U1S2xJTzM2ZUI3SFZxTUN1Yk9fNUhKc1dsVWpqLWFrTTBiVkxoYzY1S0NnYXo4?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">AI오투오, 멀티모달 콘텐츠 자동화 솔루션 ‘새로세로’로 창업진흥원 ‘모두의 창업 프로젝트’ 공급기업 선정 - 뉴스와이어</a>
+                <div class="row-reason">[Gemini AI] 정부 지원사업 공급기업 선정 사례를 통해 당사 AI B2B 마케팅 솔루션의 공공 바우처 사업 진입 전략 및 스타트업 대상 콘텐츠 자동화 생태계 경쟁 동향을 파악할 수 있는 유의미한 레퍼런스입니다.</div>
             </td>
-            <td class="td-meta">지티티코리아<br><small style="color: #64748b;">2025-07-10</small></td>
+            <td class="td-meta">뉴스와이어<br><small style="color: #64748b;">2026-06-15</small></td>
             <td class="td-score"><strong>84.0</strong></td>
-            <td><a href="https://news.google.com/rss/articles/CBMiakFVX3lxTFBWNHY5QlV1ZUlyVHoxYm5yVTdxQjhjNHFpRjhvemRZQU94cFVHWTQ5ajVwcUkzdXF1OWlNTlI4TTJUYTNVYUR3R0VOUk9HOG9mTFBoY0FnR0tJVVU2a2w1VVY0N2dsbWJqd2c?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
+            <td><a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE5kU0hESDdPWmZUQ0pPSE82WWlzZUVzZ0ZyYnhva1Fpdnk0OHlmeHdRS0U1S2xJTzM2ZUI3SFZxTUN1Yk9fNUhKc1dsVWpqLWFrTTBiVkxoYzY1S0NnYXo4?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
         </tr>
         
-        <tr class="table-row" data-domain="marketing" data-category="marketing">
+        <tr class="table-row" data-domain="manufacturing" data-category="competitor">
             <td class="td-rank">#8</td>
             <td>
-                <span class="badge" style="background: rgba(236,72,153,0.15); color: #f472b6; margin-bottom: 4px; display: inline-block;">📢 마케팅</span><br>
-                <span class="badge" style="background-color: #ec489920; color: #ec4899;">AI 마케팅·애드테크</span>
+                <span class="badge" style="background: rgba(56,189,248,0.15); color: #38bdf8; margin-bottom: 4px; display: inline-block;">🏭 제조AI</span><br>
+                <span class="badge" style="background-color: #d9770620; color: #d97706;">경쟁사분석</span>
             </td>
             <td class="td-title">
-                <a href="https://news.google.com/rss/articles/CBMihwFBVV95cUxORWcyNWtENmdoN1dKS3ZBbVk0TWpjRTYzNHkyYS11UkFwbjhuZDVyWGpwV09BbnQ2blhVWHJmMWFBOVdvMk1hQUVrOWJKVTBwLWdKU0Q5NHBKN18wU2lsaGZPN0pDYWJBZEdKZ0ZCUTlqOEZNelFNVFRycHFQT19tWTFRNXhqb28?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">크리에이팁, AI 애드테크 자회사 '캘리버' 설립… 마케팅 자동화 본격화 - 모바일한경</a>
-                <div class="row-reason">[Gemini AI] AI 마케팅 자동화 시장의 경쟁사 및 신규 플레이어 동향을 파악하여 당사의 AI 기반 마케팅 인텔리전스 및 콘텐츠 성과 분석 솔루션의 차별화 전략 수립에 참고할 수 있습니다.</div>
+                <a href="https://news.google.com/rss/articles/CBMiSEFVX3lxTE10UXduSTRQck5tTFkxczJKVmQzZmpVT29YVU9jdjM0dmpBU0lST0kxbGpfS2ZPZVJJNkkwd0c3MHBzZnJhRlVoZg?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">열화상 비전 솔루션 스타트업 ‘써모아이’, 9억 원 규모 프리 A 투자 유치 - 플래텀(Platum)</a>
+                <div class="row-reason">[경쟁 분석] 스타트업/투자(스타트업) 부합 · 제조 비전 키워드(비전) 일치 · 관심 기술 분야(스타트업) 부합 · 비전/솔루션 시장 경쟁사 및 생태계 동향 - 주요 경쟁사 및 인접 비전 솔루션 사의 시장 점유 전략 대응 필요</div>
             </td>
-            <td class="td-meta">모바일한경<br><small style="color: #64748b;">2026-05-29</small></td>
+            <td class="td-meta">플래텀(Platum)<br><small style="color: #64748b;">2023-11-20</small></td>
             <td class="td-score"><strong>83.0</strong></td>
-            <td><a href="https://news.google.com/rss/articles/CBMihwFBVV95cUxORWcyNWtENmdoN1dKS3ZBbVk0TWpjRTYzNHkyYS11UkFwbjhuZDVyWGpwV09BbnQ2blhVWHJmMWFBOVdvMk1hQUVrOWJKVTBwLWdKU0Q5NHBKN18wU2lsaGZPN0pDYWJBZEdKZ0ZCUTlqOEZNelFNVFRycHFQT19tWTFRNXhqb28?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
+            <td><a href="https://news.google.com/rss/articles/CBMiSEFVX3lxTE10UXduSTRQck5tTFkxczJKVmQzZmpVT29YVU9jdjM0dmpBU0lST0kxbGpfS2ZPZVJJNkkwd0c3MHBzZnJhRlVoZg?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
         </tr>
         
         <tr class="table-row" data-domain="marketing" data-category="marketing">
@@ -821,27 +835,27 @@
                 <span class="badge" style="background-color: #ec489920; color: #ec4899;">AI 마케팅·애드테크</span>
             </td>
             <td class="td-title">
-                <a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE1aRmExck9odm1hWERST3M3MmJuMGYxeWNyR1ZEZ3ZFNGl2NFhGVDl2THU0UWVBSUR2SElQOXhQejgzQ2U4cnFjNm5oMGlveWpOQW5PanA1cnU4a1ZlOEQxdTZjTXpsMkN1UWV4RA?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">크리에이팁, AI 애드테크 자회사 '캘리버' 설립… 마케팅 자동화 본격화 - 한경매거진&북</a>
-                <div class="row-reason">[Gemini AI] 당사의 AI 기반 B2B 마케팅 인텔리전스 솔루션과 연계하여 마케팅 자동화 기술 트렌드 및 애드테크 시장 경쟁 현황을 벤치마킹하기에 유용한 사례입니다.</div>
+                <a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTFAtYnhjMmF5MElmcU14Vm9ZQlRPLS16NUlmRTEzRzhJYTZ5dmNhSGpiQXVYTUFHZnpjY2J6OUp1dnA1Q004c0dZUzVGQVVIUG1pLWJXV0FfRjlUSVFSYnhJV1lrMXR0UzZV0gFsQVVfeXFMTWt3YzJBLUxVTGhPb0VHa3hfZWszamEyNWtvaWctZVJORnZnVWJyYjNpeWM3WVZONlFxMGRjQXNsUmt1UGpzNWVzRGlqc3g3dlA5OE15SmdFVmNJWjhGODhlSXo4V01sWkFsc1pX?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">아이티유, 5만건 임상 데이터 기반 AI 뷰티 플랫폼 ‘RE:U’ 공개…K-뷰티 디지털 전환 시동 - 스타트업엔(StartupN)</a>
+                <div class="row-reason">[AI 마케팅] 스타트업/투자(스타트업) 부합 · 디지털 마케팅 및 자동화 솔루션 동향 · 관심 기술 분야(ai, 스타트업) 부합 - B2B 마케팅 자동화, 애드테크 도입 및 고객 전환율 극대화 전략에 활용 가능</div>
             </td>
-            <td class="td-meta">한경매거진&북<br><small style="color: #64748b;">2026-05-29</small></td>
-            <td class="td-score"><strong>82.0</strong></td>
-            <td><a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE1aRmExck9odm1hWERST3M3MmJuMGYxeWNyR1ZEZ3ZFNGl2NFhGVDl2THU0UWVBSUR2SElQOXhQejgzQ2U4cnFjNm5oMGlveWpOQW5PanA1cnU4a1ZlOEQxdTZjTXpsMkN1UWV4RA?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
+            <td class="td-meta">스타트업엔(StartupN)<br><small style="color: #64748b;">2026-06-10</small></td>
+            <td class="td-score"><strong>81.0</strong></td>
+            <td><a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTFAtYnhjMmF5MElmcU14Vm9ZQlRPLS16NUlmRTEzRzhJYTZ5dmNhSGpiQXVYTUFHZnpjY2J6OUp1dnA1Q004c0dZUzVGQVVIUG1pLWJXV0FfRjlUSVFSYnhJV1lrMXR0UzZV0gFsQVVfeXFMTWt3YzJBLUxVTGhPb0VHa3hfZWszamEyNWtvaWctZVJORnZnVWJyYjNpeWM3WVZONlFxMGRjQXNsUmt1UGpzNWVzRGlqc3g3dlA5OE15SmdFVmNJWjhGODhlSXo4V01sWkFsc1pX?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
         </tr>
         
-        <tr class="table-row" data-domain="marketing" data-category="marketing">
+        <tr class="table-row" data-domain="manufacturing" data-category="tech">
             <td class="td-rank">#10</td>
             <td>
-                <span class="badge" style="background: rgba(236,72,153,0.15); color: #f472b6; margin-bottom: 4px; display: inline-block;">📢 마케팅</span><br>
-                <span class="badge" style="background-color: #ec489920; color: #ec4899;">AI 마케팅·애드테크</span>
+                <span class="badge" style="background: rgba(56,189,248,0.15); color: #38bdf8; margin-bottom: 4px; display: inline-block;">🏭 제조AI</span><br>
+                <span class="badge" style="background-color: #2563eb20; color: #2563eb;">기술·R&D</span>
             </td>
             <td class="td-title">
-                <a href="https://news.google.com/rss/articles/CBMia0FVX3lxTE5VMkdJVkZBZTNHcVRKdk04VktNV29sS3RSZnpGbFQxSEJuSGFRM3p6d3JwdTluMmdVMnhwUzlvY1FHbVJJZVBzbnplY2VYcloydEItcjRxZjhZdU51VGJSNDlHT3FKT0NBc09v?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">메타플라이어, 소상공인 11개사 대상 AI 마케팅 자동화 실증 - 데이터넷</a>
-                <div class="row-reason">[Gemini AI] AI 마케팅 자동화 실증 사례를 통해 솔루션 성과 검증 방식 및 시장 반응을 파악하여 자사의 AI B2B 마케팅 인텔리전스 고도화 및 시장 전략 수립에 벤치마킹할 수 있습니다.</div>
+                <a href="http://arxiv.org/abs/2605.23472v1" target="_blank" rel="noopener noreferrer" class="title-link">[R&D] Rethinking Transfer Learning for Industrial Inspection: DINOv3 vs. ImageNet Pretraining Across RGB and X-ray Tasks</a>
+                <div class="row-reason">[기술/R&D] 스타트업/투자(ir) 부합 · 제조 비전 키워드(defect, inspection) 일치 · 관심 기술 분야(ai) 부합 · 정부지원/사업화 기회(r&d) 포착 - 비전 불량 탐지 및 모델 정확도 고도화에 즉시 참고 가능한 기술 정보</div>
             </td>
-            <td class="td-meta">데이터넷<br><small style="color: #64748b;">2026-09-18</small></td>
-            <td class="td-score"><strong>81.5</strong></td>
-            <td><a href="https://news.google.com/rss/articles/CBMia0FVX3lxTE5VMkdJVkZBZTNHcVRKdk04VktNV29sS3RSZnpGbFQxSEJuSGFRM3p6d3JwdTluMmdVMnhwUzlvY1FHbVJJZVBzbnplY2VYcloydEItcjRxZjhZdU51VGJSNDlHT3FKT0NBc09v?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
+            <td class="td-meta">ArXiv<br><small style="color: #64748b;">2026-05-22</small></td>
+            <td class="td-score"><strong>81.0</strong></td>
+            <td><a href="http://arxiv.org/abs/2605.23472v1" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
         </tr>
         
         <tr class="table-row" data-domain="marketing" data-category="marketing">
@@ -851,177 +865,177 @@
                 <span class="badge" style="background-color: #ec489920; color: #ec4899;">AI 마케팅·애드테크</span>
             </td>
             <td class="td-title">
-                <a href="https://news.google.com/rss/articles/CBMiowJBVV95cUxQNnpTU1kySThaZTBHM0k3ZEVPRXg3aXBGUjFMV0VDWEthVTJBcDVIY1E3NEJyWlh2eTRCb1g4UlY5QWdZZDU3dlhOdVhlaVVEZGRiTTlma2Fic3lsQjVqM1g5NjhaSThWSUFtaWs0Qmt2MURCc2NqMW1oOHN1T3FwVl9hQUxMZDRmSUNGNjZPRHZLWEdOaFpDZElFZXJNaGtORUpad1AxaFpsczdkRHNvUFNiXzBwakIxZjJ5ekh3QzZ0LVI2WWtWTUotQ3V1QnI0NmZ1VFVhQ0tPUnRxVVB6dFluODRTZzFTVk90b2NhRlpvMGhSQllWT1JHYVphOE9LUkZka2tfalI2UUZqcWtPXzRDaE9Bb0hJcmd6MXptRlRfY1k?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">이없스, ‘마케팅웍스’ 시즌1 모집…GEO·AI 자동화 등 실무 마케팅 8개 과정 - 테크42</a>
-                <div class="row-reason">[AI 마케팅] AI 마케팅/애드테크(마케팅) 부합 · 관심 기술 분야(ai, 자동화) 부합 - B2B 마케팅 자동화, 애드테크 도입 및 고객 전환율 극대화 전략에 활용 가능</div>
+                <a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE92eGZFdEcxNnQ5bjc1Q1NCVG1rbGlTeGM2UWV4Ry1YRUNjSmMwUHJmMWdIZDBWRU8tWW1aX2dCMkRiTlQtM3p2Y3A2WmxXaFRwYmFzdWhxaXR6WjcyT0hUNHEtd1lYM3Ry0gFsQVVfeXFMTURVX2lyeTd4RVhxcnFBUVcyellqcEJSbGx3cXZrbWc5di0zeTRkWEVoQjJEZUNfZGNGbVY2WlNodFFpN3NVdVV6M2M0Ymc5NDJKb1lJbmt5NGFUVnNqeWVjcGVMME9KTWlsYnlL?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">위시, LG유플러스와 손잡고 AI 기반 콘텐츠 마케팅 인사이트 서비스 개발 착수 - 스타트업엔(StartupN)</a>
+                <div class="row-reason">[AI 마케팅] 스타트업/투자(스타트업) 부합 · AI 마케팅/애드테크(마케팅) 부합 · 관심 기술 분야(ai, 스타트업) 부합 - B2B 마케팅 자동화, 애드테크 도입 및 고객 전환율 극대화 전략에 활용 가능</div>
             </td>
-            <td class="td-meta">테크42<br><small style="color: #64748b;">2026-09-18</small></td>
-            <td class="td-score"><strong>71.0</strong></td>
-            <td><a href="https://news.google.com/rss/articles/CBMiowJBVV95cUxQNnpTU1kySThaZTBHM0k3ZEVPRXg3aXBGUjFMV0VDWEthVTJBcDVIY1E3NEJyWlh2eTRCb1g4UlY5QWdZZDU3dlhOdVhlaVVEZGRiTTlma2Fic3lsQjVqM1g5NjhaSThWSUFtaWs0Qmt2MURCc2NqMW1oOHN1T3FwVl9hQUxMZDRmSUNGNjZPRHZLWEdOaFpDZElFZXJNaGtORUpad1AxaFpsczdkRHNvUFNiXzBwakIxZjJ5ekh3QzZ0LVI2WWtWTUotQ3V1QnI0NmZ1VFVhQ0tPUnRxVVB6dFluODRTZzFTVk90b2NhRlpvMGhSQllWT1JHYVphOE9LUkZka2tfalI2UUZqcWtPXzRDaE9Bb0hJcmd6MXptRlRfY1k?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
+            <td class="td-meta">스타트업엔(StartupN)<br><small style="color: #64748b;">2025-11-18</small></td>
+            <td class="td-score"><strong>81.0</strong></td>
+            <td><a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE92eGZFdEcxNnQ5bjc1Q1NCVG1rbGlTeGM2UWV4Ry1YRUNjSmMwUHJmMWdIZDBWRU8tWW1aX2dCMkRiTlQtM3p2Y3A2WmxXaFRwYmFzdWhxaXR6WjcyT0hUNHEtd1lYM3Ry0gFsQVVfeXFMTURVX2lyeTd4RVhxcnFBUVcyellqcEJSbGx3cXZrbWc5di0zeTRkWEVoQjJEZUNfZGNGbVY2WlNodFFpN3NVdVV6M2M0Ymc5NDJKb1lJbmt5NGFUVnNqeWVjcGVMME9KTWlsYnlL?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
+        </tr>
+        
+        <tr class="table-row" data-domain="marketing" data-category="marketing">
+            <td class="td-rank">#12</td>
+            <td>
+                <span class="badge" style="background: rgba(236,72,153,0.15); color: #f472b6; margin-bottom: 4px; display: inline-block;">📢 마케팅</span><br>
+                <span class="badge" style="background-color: #ec489920; color: #ec4899;">AI 마케팅·애드테크</span>
+            </td>
+            <td class="td-title">
+                <a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE9wOHltb3JtalIzY1BEQk5oT0czVjE5QUQ1U0J6dEtSWFRFb09OVllfUjdULVp6UjZ4S3VhOXlSTU1CSktTbTlhc0xyUmFJb1BSZWhQTGdZRnNiQmhjdlI4Y3NERHAxeWQ00gFsQVVfeXFMUGZvdDFCUTNaTFJHWFlheS1NYWV6TS0wRkV2OVhxMUtnZ1p6UXA0RmlwcmlCUnhsM0c1eHEyakNkbEdLOGxicFVDeDdOd2R1dy1wX2xHcVJTSEpoTHpBTmJnbGZxdmZDeV93aE11?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">아드리엘-LG CNS, ‘맞손’…AI 기반 마케팅 솔루션 공동 개발 '시동' - 스타트업엔(StartupN)</a>
+                <div class="row-reason">[AI 마케팅] 스타트업/투자(스타트업) 부합 · AI 마케팅/애드테크(마케팅) 부합 · 관심 기술 분야(ai, 스타트업) 부합 - B2B 마케팅 자동화, 애드테크 도입 및 고객 전환율 극대화 전략에 활용 가능</div>
+            </td>
+            <td class="td-meta">스타트업엔(StartupN)<br><small style="color: #64748b;">2025-08-26</small></td>
+            <td class="td-score"><strong>81.0</strong></td>
+            <td><a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE9wOHltb3JtalIzY1BEQk5oT0czVjE5QUQ1U0J6dEtSWFRFb09OVllfUjdULVp6UjZ4S3VhOXlSTU1CSktTbTlhc0xyUmFJb1BSZWhQTGdZRnNiQmhjdlI4Y3NERHAxeWQ00gFsQVVfeXFMUGZvdDFCUTNaTFJHWFlheS1NYWV6TS0wRkV2OVhxMUtnZ1p6UXA0RmlwcmlCUnhsM0c1eHEyakNkbEdLOGxicFVDeDdOd2R1dy1wX2xHcVJTSEpoTHpBTmJnbGZxdmZDeV93aE11?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
+        </tr>
+        
+        <tr class="table-row" data-domain="marketing" data-category="marketing">
+            <td class="td-rank">#13</td>
+            <td>
+                <span class="badge" style="background: rgba(236,72,153,0.15); color: #f472b6; margin-bottom: 4px; display: inline-block;">📢 마케팅</span><br>
+                <span class="badge" style="background-color: #ec489920; color: #ec4899;">AI 마케팅·애드테크</span>
+            </td>
+            <td class="td-title">
+                <a href="https://news.google.com/rss/articles/CBMibkFVX3lxTE5heXdqT21sc3MwdWtGWm5zSE5PVmpJRFlkOTVZR28talItOWdnSVpaM3Y1YmlIZjlmS3Q4a2MxSUVLRVR2d1hZWVY2MExvajhXbmlsZTlMRjRkMy1jdmtFaXpydFFpWkw5bmxJQW5B?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">올인원 AI 그로스 플랫폼 핵클, ‘수파링크’ 인수∙∙∙파이어베이스 다이나믹 링크 대체 니즈 대응 - 스타트업투데이</a>
+                <div class="row-reason">[AI 마케팅] 스타트업/투자(스타트업) 부합 · AI 마케팅/애드테크(그로스) 부합 · 관심 기술 분야(ai, 스타트업) 부합 - B2B 마케팅 자동화, 애드테크 도입 및 고객 전환율 극대화 전략에 활용 가능</div>
+            </td>
+            <td class="td-meta">스타트업투데이<br><small style="color: #64748b;">2025-06-09</small></td>
+            <td class="td-score"><strong>81.0</strong></td>
+            <td><a href="https://news.google.com/rss/articles/CBMibkFVX3lxTE5heXdqT21sc3MwdWtGWm5zSE5PVmpJRFlkOTVZR28talItOWdnSVpaM3Y1YmlIZjlmS3Q4a2MxSUVLRVR2d1hZWVY2MExvajhXbmlsZTlMRjRkMy1jdmtFaXpydFFpWkw5bmxJQW5B?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
         </tr>
         
         <tr class="table-row" data-domain="manufacturing" data-category="tech">
-            <td class="td-rank">#12</td>
+            <td class="td-rank">#14</td>
             <td>
                 <span class="badge" style="background: rgba(56,189,248,0.15); color: #38bdf8; margin-bottom: 4px; display: inline-block;">🏭 제조AI</span><br>
                 <span class="badge" style="background-color: #2563eb20; color: #2563eb;">기술·R&D</span>
             </td>
             <td class="td-title">
-                <a href="http://arxiv.org/abs/2609.06232v1" target="_blank" rel="noopener noreferrer" class="title-link">[R&D] Spatial Attention Supervision for Defect Localization: Exploiting Ground-Truth Masks as Training Signal in Diffusion-Augmented Defect Detection</a>
-                <div class="row-reason">[기술/R&D] 제조 비전 키워드(defect, inspection) 일치 · 관심 기술 분야(ai) 부합 · 정부지원/사업화 기회(r&d) 포착 - 비전 불량 탐지 및 모델 정확도 고도화에 즉시 참고 가능한 기술 정보</div>
+                <a href="http://arxiv.org/abs/2504.05679v2" target="_blank" rel="noopener noreferrer" class="title-link">[R&D] Event-based Civil Infrastructure Visual Defect Detection: ev-CIVIL Dataset and Benchmark</a>
+                <div class="row-reason">[기술/R&D] 스타트업/투자(ir) 부합 · 제조 비전 키워드(defect, inspection) 일치 · 관심 기술 분야(ai) 부합 · 정부지원/사업화 기회(r&d) 포착 - 비전 불량 탐지 및 모델 정확도 고도화에 즉시 참고 가능한 기술 정보</div>
             </td>
-            <td class="td-meta">ArXiv<br><small style="color: #64748b;">2026-09-05</small></td>
-            <td class="td-score"><strong>71.0</strong></td>
-            <td><a href="http://arxiv.org/abs/2609.06232v1" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
+            <td class="td-meta">ArXiv<br><small style="color: #64748b;">2025-04-08</small></td>
+            <td class="td-score"><strong>81.0</strong></td>
+            <td><a href="http://arxiv.org/abs/2504.05679v2" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
         </tr>
         
-        <tr class="table-row" data-domain="manufacturing" data-category="competitor">
-            <td class="td-rank">#13</td>
-            <td>
-                <span class="badge" style="background: rgba(56,189,248,0.15); color: #38bdf8; margin-bottom: 4px; display: inline-block;">🏭 제조AI</span><br>
-                <span class="badge" style="background-color: #d9770620; color: #d97706;">경쟁사분석</span>
-            </td>
-            <td class="td-title">
-                <a href="https://news.google.com/rss/articles/CBMia0FVX3lxTE5KUkRqSEtldWluVk9vTk1kOHljSTNpUEZ3QmVVaEtzdWxhdU94U2FPX2d5aDdSM3piMzBvUGphbkxQS0JUYnR4ZUpzaU1LUDNsZUVaVUJhSVFmakhGcnBVUFp0THlSSDFNbFdF?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">온아이텍, AI 기반 머신비전 솔루션으로 금속·항공정밀검사 혁신 - FA저널</a>
-                <div class="row-reason">[경쟁 분석] 제조 비전 키워드(비전, 머신비전) 일치 · 관심 기술 분야(ai) 부합 · 비전/마케팅 솔루션 시장 경쟁사 및 생태계 동향 - 주요 경쟁사 및 인접 비전 솔루션 사의 시장 점유 전략 대응 필요</div>
-            </td>
-            <td class="td-meta">FA저널<br><small style="color: #64748b;">2025-10-30</small></td>
-            <td class="td-score"><strong>71.0</strong></td>
-            <td><a href="https://news.google.com/rss/articles/CBMia0FVX3lxTE5KUkRqSEtldWluVk9vTk1kOHljSTNpUEZ3QmVVaEtzdWxhdU94U2FPX2d5aDdSM3piMzBvUGphbkxQS0JUYnR4ZUpzaU1LUDNsZUVaVUJhSVFmakhGcnBVUFp0THlSSDFNbFdF?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
-        </tr>
-        
-        <tr class="table-row" data-domain="manufacturing" data-category="competitor">
-            <td class="td-rank">#14</td>
-            <td>
-                <span class="badge" style="background: rgba(56,189,248,0.15); color: #38bdf8; margin-bottom: 4px; display: inline-block;">🏭 제조AI</span><br>
-                <span class="badge" style="background-color: #d9770620; color: #d97706;">경쟁사분석</span>
-            </td>
-            <td class="td-title">
-                <a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE53VWNuVUpDNHRKS09Nc2Q4dGtrcVN0S1paa2M5U3FCa081cW1rMGNyZ1hKdVZybnc0dXhzbm1JQ0dYZFFWR3JmcXNlbERHQUc2VmthR2RXLTgxZlRISzhaWmd6NUQ2R0k?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">어드밴텍, 美 이미지 및 AI 머신비전 솔루션 기업 '비트플로우' 인수...글로벌 네트워크와 AI 이미지 처리 솔루션 강화 - 인공지능신문</a>
-                <div class="row-reason">[경쟁 분석] 제조 비전 키워드(비전, 머신비전) 일치 · 관심 기술 분야(ai) 부합 · 비전/마케팅 솔루션 시장 경쟁사 및 생태계 동향 - 주요 경쟁사 및 인접 비전 솔루션 사의 시장 점유 전략 대응 필요</div>
-            </td>
-            <td class="td-meta">인공지능신문<br><small style="color: #64748b;">2023-09-08</small></td>
-            <td class="td-score"><strong>71.0</strong></td>
-            <td><a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE53VWNuVUpDNHRKS09Nc2Q4dGtrcVN0S1paa2M5U3FCa081cW1rMGNyZ1hKdVZybnc0dXhzbm1JQ0dYZFFWR3JmcXNlbERHQUc2VmthR2RXLTgxZlRISzhaWmd6NUQ2R0k?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
-        </tr>
-        
-        <tr class="table-row" data-domain="manufacturing" data-category="competitor">
+        <tr class="table-row" data-domain="manufacturing" data-category="tech">
             <td class="td-rank">#15</td>
             <td>
                 <span class="badge" style="background: rgba(56,189,248,0.15); color: #38bdf8; margin-bottom: 4px; display: inline-block;">🏭 제조AI</span><br>
-                <span class="badge" style="background-color: #d9770620; color: #d97706;">경쟁사분석</span>
+                <span class="badge" style="background-color: #2563eb20; color: #2563eb;">기술·R&D</span>
             </td>
             <td class="td-title">
-                <a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE9CQ1FWcXk4UlNoT3FIQkhNNmM0dURkQU13ZjVSNGV0VzVZR1l1Q09GaFdNaUw5UEZQZlo1M2VFRm9ZNTBYZ1RRS0psallkczZSS0FyOUJBZ1RJSnY2dldsaWFFajBGNW15bGdabA?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">AI 머신비전 검사기 전문기업 시냅스이미징, 2024년 코스닥 상장 추진 - 로봇신문</a>
-                <div class="row-reason">[경쟁 분석] 제조 비전 키워드(비전, 머신비전) 일치 · 관심 기술 분야(ai) 부합 · 비전/마케팅 솔루션 시장 경쟁사 및 생태계 동향 - 주요 경쟁사 및 인접 비전 솔루션 사의 시장 점유 전략 대응 필요</div>
+                <a href="http://arxiv.org/abs/2409.06833v2" target="_blank" rel="noopener noreferrer" class="title-link">[R&D] Scanning Electron Microscopy-based Automatic Defect Inspection for Semiconductor Manufacturing: A Systematic Review</a>
+                <div class="row-reason">[기술/R&D] 스타트업/투자(ir) 부합 · 제조 비전 키워드(defect, inspection) 일치 · 관심 기술 분야(ai) 부합 · 정부지원/사업화 기회(r&d) 포착 - 비전 불량 탐지 및 모델 정확도 고도화에 즉시 참고 가능한 기술 정보</div>
             </td>
-            <td class="td-meta">로봇신문<br><small style="color: #64748b;">2022-08-10</small></td>
-            <td class="td-score"><strong>71.0</strong></td>
-            <td><a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE9CQ1FWcXk4UlNoT3FIQkhNNmM0dURkQU13ZjVSNGV0VzVZR1l1Q09GaFdNaUw5UEZQZlo1M2VFRm9ZNTBYZ1RRS0psallkczZSS0FyOUJBZ1RJSnY2dldsaWFFajBGNW15bGdabA?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
+            <td class="td-meta">ArXiv<br><small style="color: #64748b;">2024-09-10</small></td>
+            <td class="td-score"><strong>81.0</strong></td>
+            <td><a href="http://arxiv.org/abs/2409.06833v2" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
         </tr>
         
-        <tr class="table-row" data-domain="manufacturing" data-category="competitor">
+        <tr class="table-row" data-domain="manufacturing" data-category="tech">
             <td class="td-rank">#16</td>
             <td>
                 <span class="badge" style="background: rgba(56,189,248,0.15); color: #38bdf8; margin-bottom: 4px; display: inline-block;">🏭 제조AI</span><br>
-                <span class="badge" style="background-color: #d9770620; color: #d97706;">경쟁사분석</span>
+                <span class="badge" style="background-color: #2563eb20; color: #2563eb;">기술·R&D</span>
             </td>
             <td class="td-title">
-                <a href="https://news.google.com/rss/articles/CBMia0FVX3lxTFBqcklyV2ZzQUtiU1cwY2tYVlBXSGpPUDVlOWsyVVhUb3dKeld6dUxvdWxfU3FVWHE3dmtRQ2NuWVl5azRxakJvZTJVTGNzeDhQZmhjUkNGNnAxNVZ5d1FHRnBVeFNnNjlvMjVR?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">라온피플, ‘NAVI AI 5.0’·‘아담스’로 머신비전 솔루션 새 장 연다 - FA저널</a>
-                <div class="row-reason">[경쟁 분석] 제조 비전 키워드(비전, 머신비전) 일치 · 관심 기술 분야(ai) 부합 · 비전/마케팅 솔루션 시장 경쟁사 및 생태계 동향 - 주요 경쟁사 및 인접 비전 솔루션 사의 시장 점유 전략 대응 필요</div>
+                <a href="http://arxiv.org/abs/2401.01373v2" target="_blank" rel="noopener noreferrer" class="title-link">[R&D] Boosting Defect Detection in Manufacturing using Tensor Convolutional Neural Networks</a>
+                <div class="row-reason">[기술/R&D] 스타트업/투자(ir) 부합 · 제조 비전 키워드(defect, inspection) 일치 · 관심 기술 분야(ai) 부합 · 정부지원/사업화 기회(r&d) 포착 - 비전 불량 탐지 및 모델 정확도 고도화에 즉시 참고 가능한 기술 정보</div>
             </td>
-            <td class="td-meta">FA저널<br><small style="color: #64748b;">2022-03-15</small></td>
-            <td class="td-score"><strong>71.0</strong></td>
-            <td><a href="https://news.google.com/rss/articles/CBMia0FVX3lxTFBqcklyV2ZzQUtiU1cwY2tYVlBXSGpPUDVlOWsyVVhUb3dKeld6dUxvdWxfU3FVWHE3dmtRQ2NuWVl5azRxakJvZTJVTGNzeDhQZmhjUkNGNnAxNVZ5d1FHRnBVeFNnNjlvMjVR?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
+            <td class="td-meta">ArXiv<br><small style="color: #64748b;">2023-12-29</small></td>
+            <td class="td-score"><strong>81.0</strong></td>
+            <td><a href="http://arxiv.org/abs/2401.01373v2" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
         </tr>
         
-        <tr class="table-row" data-domain="manufacturing" data-category="competitor">
+        <tr class="table-row" data-domain="manufacturing" data-category="tech">
             <td class="td-rank">#17</td>
             <td>
                 <span class="badge" style="background: rgba(56,189,248,0.15); color: #38bdf8; margin-bottom: 4px; display: inline-block;">🏭 제조AI</span><br>
-                <span class="badge" style="background-color: #d9770620; color: #d97706;">경쟁사분석</span>
+                <span class="badge" style="background-color: #2563eb20; color: #2563eb;">기술·R&D</span>
             </td>
             <td class="td-title">
-                <a href="https://news.google.com/rss/articles/CBMickFVX3lxTFBvVUhnSFY4LVpwU2FPYUJZZHlacUxiU2JnMW05elRyV01LWnE5M3FUeWFfa3lSdld6Vmh1eHZaRUdGQm50aUZpS1lkcHhuWXdkeVRmRmFKazJRSjNDV0ozNkVsVGJ5cGhaa2psQXlvMVc2Zw?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">라온피플, ‘NAVI AI 5.0’·‘아담스’로 머신비전 솔루션 새 장 연다 - 인더스트리뉴스</a>
-                <div class="row-reason">[경쟁 분석] 제조 비전 키워드(비전, 머신비전) 일치 · 관심 기술 분야(ai) 부합 · 비전/마케팅 솔루션 시장 경쟁사 및 생태계 동향 - 주요 경쟁사 및 인접 비전 솔루션 사의 시장 점유 전략 대응 필요</div>
+                <a href="http://arxiv.org/abs/2312.09232v1" target="_blank" rel="noopener noreferrer" class="title-link">[R&D] DVQI: A Multi-task, Hardware-integrated Artificial Intelligence System for Automated Visual Inspection in Electronics Manufacturing</a>
+                <div class="row-reason">[기술/R&D] 스타트업/투자(ir) 부합 · 제조 비전 키워드(defect, inspection) 일치 · 관심 기술 분야(ai) 부합 · 정부지원/사업화 기회(r&d) 포착 - 비전 불량 탐지 및 모델 정확도 고도화에 즉시 참고 가능한 기술 정보</div>
             </td>
-            <td class="td-meta">인더스트리뉴스<br><small style="color: #64748b;">2022-03-15</small></td>
-            <td class="td-score"><strong>71.0</strong></td>
-            <td><a href="https://news.google.com/rss/articles/CBMickFVX3lxTFBvVUhnSFY4LVpwU2FPYUJZZHlacUxiU2JnMW05elRyV01LWnE5M3FUeWFfa3lSdld6Vmh1eHZaRUdGQm50aUZpS1lkcHhuWXdkeVRmRmFKazJRSjNDV0ozNkVsVGJ5cGhaa2psQXlvMVc2Zw?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
+            <td class="td-meta">ArXiv<br><small style="color: #64748b;">2023-12-14</small></td>
+            <td class="td-score"><strong>81.0</strong></td>
+            <td><a href="http://arxiv.org/abs/2312.09232v1" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
         </tr>
         
-        <tr class="table-row" data-domain="manufacturing" data-category="competitor">
+        <tr class="table-row" data-domain="manufacturing" data-category="tech">
             <td class="td-rank">#18</td>
             <td>
                 <span class="badge" style="background: rgba(56,189,248,0.15); color: #38bdf8; margin-bottom: 4px; display: inline-block;">🏭 제조AI</span><br>
-                <span class="badge" style="background-color: #d9770620; color: #d97706;">경쟁사분석</span>
+                <span class="badge" style="background-color: #2563eb20; color: #2563eb;">기술·R&D</span>
             </td>
             <td class="td-title">
-                <a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9FQVA0em1ZMnl1NjRENy1QNHZma3cyTkVfaHBvMVR1ZUZIUFFZLWpfemlaV0hYV01vLWd0Zk50YzhtSHNRNUd0Tm9oQ2dpT21tY0t6ZmJ2OVdxeWNYNHBxQm1STW5hNnM?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">KT, 머신비전 기능 탑재한 ‘5G 스마트팩토리 비전’ 출시 - 테크월드</a>
-                <div class="row-reason">[경쟁 분석] 제조 비전 키워드(비전, 머신비전) 일치 · 관심 기술 분야(스마트팩토리) 부합 · 비전/마케팅 솔루션 시장 경쟁사 및 생태계 동향 - 주요 경쟁사 및 인접 비전 솔루션 사의 시장 점유 전략 대응 필요</div>
+                <a href="http://arxiv.org/abs/2309.04590v1" target="_blank" rel="noopener noreferrer" class="title-link">[R&D] Robotic Defect Inspection with Visual and Tactile Perception for Large-scale Components</a>
+                <div class="row-reason">[기술/R&D] 스타트업/투자(ir) 부합 · 제조 비전 키워드(defect, inspection) 일치 · 관심 기술 분야(ai) 부합 · 정부지원/사업화 기회(r&d) 포착 - 비전 불량 탐지 및 모델 정확도 고도화에 즉시 참고 가능한 기술 정보</div>
             </td>
-            <td class="td-meta">테크월드<br><small style="color: #64748b;">2020-06-02</small></td>
-            <td class="td-score"><strong>71.0</strong></td>
-            <td><a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9FQVA0em1ZMnl1NjRENy1QNHZma3cyTkVfaHBvMVR1ZUZIUFFZLWpfemlaV0hYV01vLWd0Zk50YzhtSHNRNUd0Tm9oQ2dpT21tY0t6ZmJ2OVdxeWNYNHBxQm1STW5hNnM?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
+            <td class="td-meta">ArXiv<br><small style="color: #64748b;">2023-09-08</small></td>
+            <td class="td-score"><strong>81.0</strong></td>
+            <td><a href="http://arxiv.org/abs/2309.04590v1" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
         </tr>
         
-        <tr class="table-row" data-domain="manufacturing" data-category="competitor">
+        <tr class="table-row" data-domain="manufacturing" data-category="tech">
             <td class="td-rank">#19</td>
             <td>
                 <span class="badge" style="background: rgba(56,189,248,0.15); color: #38bdf8; margin-bottom: 4px; display: inline-block;">🏭 제조AI</span><br>
-                <span class="badge" style="background-color: #d9770620; color: #d97706;">경쟁사분석</span>
+                <span class="badge" style="background-color: #2563eb20; color: #2563eb;">기술·R&D</span>
             </td>
             <td class="td-title">
-                <a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9SUG1YMlRsT1FyMENOZEtNTTRPRGk5SWcwYW11SFp4a1pIbmI0dUtZMEx4NGloeDRiUTA0WmxNYWtBNElMeUZSZDA4cG12alBGMHhwcHRHSFl3dUpjY0EyZFkzdjhJRDQ?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">코그넥스, AI 머신비전 솔루션 기업 '수아랩' 인수 - 테크월드</a>
-                <div class="row-reason">[경쟁 분석] 제조 비전 키워드(비전, 머신비전) 일치 · 관심 기술 분야(ai) 부합 · 비전/마케팅 솔루션 시장 경쟁사 및 생태계 동향 - 주요 경쟁사 및 인접 비전 솔루션 사의 시장 점유 전략 대응 필요</div>
+                <a href="http://arxiv.org/abs/2309.03113v1" target="_blank" rel="noopener noreferrer" class="title-link">[R&D] Detecting Manufacturing Defects in PCBs via Data-Centric Machine Learning on Solder Paste Inspection Features</a>
+                <div class="row-reason">[기술/R&D] 스타트업/투자(ir) 부합 · 제조 비전 키워드(defect, inspection) 일치 · 관심 기술 분야(ai) 부합 · 정부지원/사업화 기회(r&d) 포착 - 비전 불량 탐지 및 모델 정확도 고도화에 즉시 참고 가능한 기술 정보</div>
             </td>
-            <td class="td-meta">테크월드<br><small style="color: #64748b;">2019-10-17</small></td>
-            <td class="td-score"><strong>71.0</strong></td>
-            <td><a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9SUG1YMlRsT1FyMENOZEtNTTRPRGk5SWcwYW11SFp4a1pIbmI0dUtZMEx4NGloeDRiUTA0WmxNYWtBNElMeUZSZDA4cG12alBGMHhwcHRHSFl3dUpjY0EyZFkzdjhJRDQ?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
+            <td class="td-meta">ArXiv<br><small style="color: #64748b;">2023-09-06</small></td>
+            <td class="td-score"><strong>81.0</strong></td>
+            <td><a href="http://arxiv.org/abs/2309.03113v1" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
         </tr>
         
-        <tr class="table-row" data-domain="manufacturing" data-category="competitor">
+        <tr class="table-row" data-domain="manufacturing" data-category="tech">
             <td class="td-rank">#20</td>
             <td>
                 <span class="badge" style="background: rgba(56,189,248,0.15); color: #38bdf8; margin-bottom: 4px; display: inline-block;">🏭 제조AI</span><br>
-                <span class="badge" style="background-color: #d9770620; color: #d97706;">경쟁사분석</span>
+                <span class="badge" style="background-color: #2563eb20; color: #2563eb;">기술·R&D</span>
             </td>
             <td class="td-title">
-                <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTFB0VG9FbVI5bGM5Z1p5LTM4OGdSRTZjdFE3U3VqS1lFQUpHTFJoTWg5U3dlc0JLQmtDdUY0cjFPeWJfTS1DTnVUOVZNeGEzOG1XMFV3VDZpRldtYUxIWUZr?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">[AW 베트남 2026] 머신앤비전, 올인원 AI 비전검사 시스템 ‘비전메이트’ 선보인다 - 헬로티</a>
-                <div class="row-reason">[경쟁 분석] 제조 비전 키워드(비전) 일치 · 관심 기술 분야(ai) 부합 · 비전/마케팅 솔루션 시장 경쟁사 및 생태계 동향 - 주요 경쟁사 및 인접 비전 솔루션 사의 시장 점유 전략 대응 필요</div>
+                <a href="http://arxiv.org/abs/2305.09407v1" target="_blank" rel="noopener noreferrer" class="title-link">[R&D] A Novel Strategy for Improving Robustness in Computer Vision Manufacturing Defect Detection</a>
+                <div class="row-reason">[기술/R&D] 스타트업/투자(ir) 부합 · 제조 비전 키워드(defect, inspection) 일치 · 관심 기술 분야(ai) 부합 · 정부지원/사업화 기회(r&d) 포착 - 비전 불량 탐지 및 모델 정확도 고도화에 즉시 참고 가능한 기술 정보</div>
             </td>
-            <td class="td-meta">헬로티<br><small style="color: #64748b;">2026-08-26</small></td>
-            <td class="td-score"><strong>70.0</strong></td>
-            <td><a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTFB0VG9FbVI5bGM5Z1p5LTM4OGdSRTZjdFE3U3VqS1lFQUpHTFJoTWg5U3dlc0JLQmtDdUY0cjFPeWJfTS1DTnVUOVZNeGEzOG1XMFV3VDZpRldtYUxIWUZr?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
+            <td class="td-meta">ArXiv<br><small style="color: #64748b;">2023-05-16</small></td>
+            <td class="td-score"><strong>81.0</strong></td>
+            <td><a href="http://arxiv.org/abs/2305.09407v1" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
         </tr>
         
-        <tr class="table-row" data-domain="manufacturing" data-category="competitor">
+        <tr class="table-row" data-domain="marketing" data-category="marketing">
             <td class="td-rank">#21</td>
             <td>
-                <span class="badge" style="background: rgba(56,189,248,0.15); color: #38bdf8; margin-bottom: 4px; display: inline-block;">🏭 제조AI</span><br>
-                <span class="badge" style="background-color: #d9770620; color: #d97706;">경쟁사분석</span>
+                <span class="badge" style="background: rgba(236,72,153,0.15); color: #f472b6; margin-bottom: 4px; display: inline-block;">📢 마케팅</span><br>
+                <span class="badge" style="background-color: #ec489920; color: #ec4899;">AI 마케팅·애드테크</span>
             </td>
             <td class="td-title">
-                <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE9YcU5pcFVELUozQXpoX3FqY1lsLWlITFcxX1JRMk5zVDlYcVlSTXVQWnFHLXVZQTZqdllPZlJJMFUxQUM2X29UM0I2ZW9HQU5KekIwM1FLLXlJdGQ1TWNJ?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">코어이미징, 뉴로클·센소파트 대리점 계약으로 AI 비전 포트폴리오 확대 - 헬로티</a>
-                <div class="row-reason">[경쟁 분석] 제조 비전 키워드(비전) 일치 · 관심 기술 분야(ai) 부합 · 비전/마케팅 솔루션 시장 경쟁사 및 생태계 동향 - 주요 경쟁사 및 인접 비전 솔루션 사의 시장 점유 전략 대응 필요</div>
+                <a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE81NEltWjRUUy1aRXhiNVFaSE1wTUMtMzRhM1RORnlGYmpPTmN5SWlOa2RqV0lpNGxmdXVSUmNyZWp2SG9GRkR4Wld2LVJFaE9OSkVvc294QnlTeUVyZHVkam9raGFJNHhx0gFsQVVfeXFMUElDMnR6V09uWEZZUUhwckcxZHYtR0R5NDFoR1RJMTUwakY5UThueElHQ29WaU81QTN6WUtXcDc3NXF1VThsMjNEYTZDQWtXclh5elB0cU5ELUJxSE1CaWFHRTFtSG94TDhqeXlf?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">모션랩스 '리비짓', 유료 고객 병원 600곳 돌파… 병원 CRM 넘어 환자경험 플랫폼으로 확장 - 스타트업엔(StartupN)</a>
+                <div class="row-reason">[AI 마케팅] 스타트업/투자(스타트업) 부합 · AI 마케팅/애드테크(crm) 부합 · 관심 기술 분야(스타트업) 부합 - B2B 마케팅 자동화, 애드테크 도입 및 고객 전환율 극대화 전략에 활용 가능</div>
             </td>
-            <td class="td-meta">헬로티<br><small style="color: #64748b;">2026-08-24</small></td>
-            <td class="td-score"><strong>70.0</strong></td>
-            <td><a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE9YcU5pcFVELUozQXpoX3FqY1lsLWlITFcxX1JRMk5zVDlYcVlSTXVQWnFHLXVZQTZqdllPZlJJMFUxQUM2X29UM0I2ZW9HQU5KekIwM1FLLXlJdGQ1TWNJ?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
+            <td class="td-meta">스타트업엔(StartupN)<br><small style="color: #64748b;">2026-07-23</small></td>
+            <td class="td-score"><strong>80.0</strong></td>
+            <td><a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE81NEltWjRUUy1aRXhiNVFaSE1wTUMtMzRhM1RORnlGYmpPTmN5SWlOa2RqV0lpNGxmdXVSUmNyZWp2SG9GRkR4Wld2LVJFaE9OSkVvc294QnlTeUVyZHVkam9raGFJNHhx0gFsQVVfeXFMUElDMnR6V09uWEZZUUhwckcxZHYtR0R5NDFoR1RJMTUwakY5UThueElHQ29WaU81QTN6WUtXcDc3NXF1VThsMjNEYTZDQWtXclh5elB0cU5ELUJxSE1CaWFHRTFtSG94TDhqeXlf?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
         </tr>
         
-        <tr class="table-row" data-domain="manufacturing" data-category="competitor">
+        <tr class="table-row" data-domain="startup" data-category="startup">
             <td class="td-rank">#22</td>
             <td>
-                <span class="badge" style="background: rgba(56,189,248,0.15); color: #38bdf8; margin-bottom: 4px; display: inline-block;">🏭 제조AI</span><br>
-                <span class="badge" style="background-color: #d9770620; color: #d97706;">경쟁사분석</span>
+                <span class="badge" style="background: rgba(245,158,11,0.15); color: #fbbf24; margin-bottom: 4px; display: inline-block;">🚀 스타트업</span><br>
+                <span class="badge" style="background-color: #f59e0b20; color: #f59e0b;">스타트업·투자</span>
             </td>
             <td class="td-title">
-                <a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE9PVG5DZlB6X1hOOGY1ZEpVMkg2bEFzcTAwUVZreFdnMUhrYndqSXBvMGlnVGtJUlVyMjhtZFM2U0p5am9KT0wxNGFfMnM2YUppMFNDbHk2ZlhBeGhLQlVOVzJXTkNON0xuNFJURA?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">뷰웍스, 상반기 영업익 127% 급증…머신비전이 실적 견인 - 바이오타임즈</a>
-                <div class="row-reason">[경쟁 분석] 제조 비전 키워드(비전, 머신비전) 일치 · 비전/마케팅 솔루션 시장 경쟁사 및 생태계 동향 - 주요 경쟁사 및 인접 비전 솔루션 사의 시장 점유 전략 대응 필요</div>
+                <a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE56VktqVkdDZHAxdllXSmg5c2hic1N3YUxVLWtWWmctazdFTnhNRk5aekNVejNiX0VaTjRfS29JZmpWMlZYX2xEUURGZFJydUxoUW9NN3VkX3NFbGFFbHpoRHFXV29pRWJp0gFsQVVfeXFMT3lzbGZ4TU5NRHpNUDdLSWFHZ3djMHU4eEVyckJ1ZzU0cWY2TXA1NWI4NjA4c0N5ZDR1TjNwOUZFY0FmN0dHc2JPRE03d05lVkJRMlFhUDhISmlYZmxjbjF1Q05xb3RTbU80RnFu?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">에이치솔루션즈, 팁스(TIPS) 최종 선정… 보조기기 예방정비 AI 개발 나선다 - 스타트업엔(StartupN)</a>
+                <div class="row-reason">[스타트업/투자] 스타트업/투자(스타트업, tips) 부합 · 관심 기술 분야(ai, 스타트업) 부합 · 정부지원/사업화 기회(팁스) 포착 - 초기 스타트업 TIPS 선정, 투자 유치(IR) 및 스케일업 생태계 기회 포착</div>
             </td>
-            <td class="td-meta">바이오타임즈<br><small style="color: #64748b;">2026-08-04</small></td>
-            <td class="td-score"><strong>70.0</strong></td>
-            <td><a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE9PVG5DZlB6X1hOOGY1ZEpVMkg2bEFzcTAwUVZreFdnMUhrYndqSXBvMGlnVGtJUlVyMjhtZFM2U0p5am9KT0wxNGFfMnM2YUppMFNDbHk2ZlhBeGhLQlVOVzJXTkNON0xuNFJURA?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
+            <td class="td-meta">스타트업엔(StartupN)<br><small style="color: #64748b;">2026-05-21</small></td>
+            <td class="td-score"><strong>80.0</strong></td>
+            <td><a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE56VktqVkdDZHAxdllXSmg5c2hic1N3YUxVLWtWWmctazdFTnhNRk5aekNVejNiX0VaTjRfS29JZmpWMlZYX2xEUURGZFJydUxoUW9NN3VkX3NFbGFFbHpoRHFXV29pRWJp0gFsQVVfeXFMT3lzbGZ4TU5NRHpNUDdLSWFHZ3djMHU4eEVyckJ1ZzU0cWY2TXA1NWI4NjA4c0N5ZDR1TjNwOUZFY0FmN0dHc2JPRE03d05lVkJRMlFhUDhISmlYZmxjbjF1Q05xb3RTbU80RnFu?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
         </tr>
         
         <tr class="table-row" data-domain="marketing" data-category="marketing">
@@ -1031,87 +1045,87 @@
                 <span class="badge" style="background-color: #ec489920; color: #ec4899;">AI 마케팅·애드테크</span>
             </td>
             <td class="td-title">
-                <a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE83b3liRTFQRWxaYi1SRmhXcmU3SE1qek9EWjJkb0FkNmRfaTIybm52NkhjVHR4NVdWcS1LWTRoX19ZYXZkSmNEUVNxN18xYldqZkxrYUtfcUJ6c2VZR0JqS3J2RjdPbVVlS2c?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">웹사이트가 직접 고객 확보한다...AI 에이전트 기반 마케팅 자동화 확산 - 지티티코리아</a>
+                <a href="https://news.google.com/rss/articles/CBMia0FVX3lxTE5VMkdJVkZBZTNHcVRKdk04VktNV29sS3RSZnpGbFQxSEJuSGFRM3p6d3JwdTluMmdVMnhwUzlvY1FHbVJJZVBzbnplY2VYcloydEItcjRxZjhZdU51VGJSNDlHT3FKT0NBc09v?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">메타플라이어, 소상공인 11개사 대상 AI 마케팅 자동화 실증 - datanet.co.kr</a>
                 <div class="row-reason">[AI 마케팅] AI 마케팅/애드테크(마케팅) 부합 · 관심 기술 분야(ai, 자동화) 부합 - B2B 마케팅 자동화, 애드테크 도입 및 고객 전환율 극대화 전략에 활용 가능</div>
             </td>
-            <td class="td-meta">지티티코리아<br><small style="color: #64748b;">2026-06-18</small></td>
-            <td class="td-score"><strong>70.0</strong></td>
-            <td><a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE83b3liRTFQRWxaYi1SRmhXcmU3SE1qek9EWjJkb0FkNmRfaTIybm52NkhjVHR4NVdWcS1LWTRoX19ZYXZkSmNEUVNxN18xYldqZkxrYUtfcUJ6c2VZR0JqS3J2RjdPbVVlS2c?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
+            <td class="td-meta">datanet.co.kr<br><small style="color: #64748b;">2026-09-18</small></td>
+            <td class="td-score"><strong>79.0</strong></td>
+            <td><a href="https://news.google.com/rss/articles/CBMia0FVX3lxTE5VMkdJVkZBZTNHcVRKdk04VktNV29sS3RSZnpGbFQxSEJuSGFRM3p6d3JwdTluMmdVMnhwUzlvY1FHbVJJZVBzbnplY2VYcloydEItcjRxZjhZdU51VGJSNDlHT3FKT0NBc09v?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
         </tr>
         
-        <tr class="table-row" data-domain="marketing" data-category="marketing">
+        <tr class="table-row" data-domain="startup" data-category="startup">
             <td class="td-rank">#24</td>
             <td>
-                <span class="badge" style="background: rgba(236,72,153,0.15); color: #f472b6; margin-bottom: 4px; display: inline-block;">📢 마케팅</span><br>
-                <span class="badge" style="background-color: #ec489920; color: #ec4899;">AI 마케팅·애드테크</span>
+                <span class="badge" style="background: rgba(245,158,11,0.15); color: #fbbf24; margin-bottom: 4px; display: inline-block;">🚀 스타트업</span><br>
+                <span class="badge" style="background-color: #f59e0b20; color: #f59e0b;">스타트업·투자</span>
             </td>
             <td class="td-title">
-                <a href="https://news.google.com/rss/articles/CBMiakFVX3lxTFBuV1ZGZm9tLVdyZ05NZmlZaWh2bUtVdjdHSk5SejkxTm10WkZHYl9QNlRRUGtPQUpCWFVGcmZ4TFktclF0ZTlsN0hnMGNkSHpLdkRDRDJQdklSWmRKSTRiU1hJRlZEVExXelE?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">[심층분석] 알리바바 AI 마케팅 플랫폼, 구글 광고 생태계 진입…중소 이커머스 ‘크리에이티브 자동화’ 경쟁 본격화 - 뉴스밸류</a>
-                <div class="row-reason">[AI 마케팅] AI 마케팅/애드테크(마케팅, 광고) 부합 · 관심 기술 분야(ai, 자동화) 부합 - B2B 마케팅 자동화, 애드테크 도입 및 고객 전환율 극대화 전략에 활용 가능</div>
+                <a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE1kMDlKOTEyRjljMFdoaVpMRTkwUjN1MjZ5TTIxY1NrR3cxWl9hQ2NSVm1VbUYzQU1KNnhLcW52N21GVjdYN1lLMEtudVAtZk42QmZabEM4OS12SEtNNkttTzhDMHIxR1Zu0gFsQVVfeXFMTkpTbmNpbTBUall3RzI1UDJ2T3FHaTg2djdZZE9tX0JUWDQ5d3VNRG8zRFY4YzFUcks0a01jclNXZjV1Sk1rSy1ZUUNQUFVxLTh1WE5pcmpTQ2gwLVRFVjZZcFNUQ05Rd0t3ejgw?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">렌트리, 중기부 ‘딥테크 팁스’ 선정…3년간 15억원 투입해 렌탈 AI 개발 - 스타트업엔(StartupN)</a>
+                <div class="row-reason">[스타트업/투자] 스타트업/투자(스타트업, 팁스) 부합 · 관심 기술 분야(ai, 스타트업) 부합 · 정부지원/사업화 기회(팁스) 포착 - 초기 스타트업 TIPS 선정, 투자 유치(IR) 및 스케일업 생태계 기회 포착</div>
             </td>
-            <td class="td-meta">뉴스밸류<br><small style="color: #64748b;">2026-06-09</small></td>
-            <td class="td-score"><strong>70.0</strong></td>
-            <td><a href="https://news.google.com/rss/articles/CBMiakFVX3lxTFBuV1ZGZm9tLVdyZ05NZmlZaWh2bUtVdjdHSk5SejkxTm10WkZHYl9QNlRRUGtPQUpCWFVGcmZ4TFktclF0ZTlsN0hnMGNkSHpLdkRDRDJQdklSWmRKSTRiU1hJRlZEVExXelE?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
+            <td class="td-meta">스타트업엔(StartupN)<br><small style="color: #64748b;">2026-08-19</small></td>
+            <td class="td-score"><strong>79.0</strong></td>
+            <td><a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE1kMDlKOTEyRjljMFdoaVpMRTkwUjN1MjZ5TTIxY1NrR3cxWl9hQ2NSVm1VbUYzQU1KNnhLcW52N21GVjdYN1lLMEtudVAtZk42QmZabEM4OS12SEtNNkttTzhDMHIxR1Zu0gFsQVVfeXFMTkpTbmNpbTBUall3RzI1UDJ2T3FHaTg2djdZZE9tX0JUWDQ5d3VNRG8zRFY4YzFUcks0a01jclNXZjV1Sk1rSy1ZUUNQUFVxLTh1WE5pcmpTQ2gwLVRFVjZZcFNUQ05Rd0t3ejgw?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
         </tr>
         
-        <tr class="table-row" data-domain="marketing" data-category="marketing">
+        <tr class="table-row" data-domain="startup" data-category="startup">
             <td class="td-rank">#25</td>
             <td>
-                <span class="badge" style="background: rgba(236,72,153,0.15); color: #f472b6; margin-bottom: 4px; display: inline-block;">📢 마케팅</span><br>
-                <span class="badge" style="background-color: #ec489920; color: #ec4899;">AI 마케팅·애드테크</span>
+                <span class="badge" style="background: rgba(245,158,11,0.15); color: #fbbf24; margin-bottom: 4px; display: inline-block;">🚀 스타트업</span><br>
+                <span class="badge" style="background-color: #f59e0b20; color: #f59e0b;">스타트업·투자</span>
             </td>
             <td class="td-title">
-                <a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE9KMnhiRGN4TmEzRFItRFI1QW5WQVA4QzJYNXJXSmtxOUlra2dEdGV4dk9jRmxxb1h1cmdMbXMwSHlEYXlPWVMyX3JZQVRMQ1Q2NzVCMlBSWE5fOWxVV0FQMUFyQTBabHhfWHZWYg?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">타불라, 에이전틱 AI ‘Realize+’ 공개…퍼포먼스 마케팅 자동화 확장 - 매드타임스</a>
-                <div class="row-reason">[AI 마케팅] AI 마케팅/애드테크(마케팅, 퍼포먼스) 부합 · 관심 기술 분야(ai, 자동화) 부합 - B2B 마케팅 자동화, 애드테크 도입 및 고객 전환율 극대화 전략에 활용 가능</div>
+                <a href="https://news.google.com/rss/articles/CBMidkFVX3lxTE00SFpBc0tPQ0c4QnRrWEtwRVIzU1dTX3JPNGttd2FjcFFuNy0ya1U3cWJkekt6T293endPaHc2eWlGdWRyeF9UbldmT3FSRnU3Y2g4YzZCRE1jS1gxc2dGS2FCS3RXRXNGVmZDZks3N09hNWZBRHfSAWZBVV95cUxOY3NUanBlZXRBaG9WRW82MUFkX0M3LURRSzlhUlBYeHF1Z0J2dHJjc0RjLWh5bi1RaEM1UzBTUmlYcGV3OVRJWmxURXhRWkJMY1p1YTEtOENSWHV1RGpybFhCREllNnc?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">서울창경 추천 스타트업 ‘프랩’, 2026년 팁스(TIPS) 최종 선정 - 동아일보</a>
+                <div class="row-reason">[스타트업/투자] 스타트업/투자(스타트업, tips) 부합 · 관심 기술 분야(스타트업, tips) 부합 · 정부지원/사업화 기회(팁스) 포착 - 초기 스타트업 TIPS 선정, 투자 유치(IR) 및 스케일업 생태계 기회 포착</div>
             </td>
-            <td class="td-meta">매드타임스<br><small style="color: #64748b;">2026-04-26</small></td>
-            <td class="td-score"><strong>70.0</strong></td>
-            <td><a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE9KMnhiRGN4TmEzRFItRFI1QW5WQVA4QzJYNXJXSmtxOUlra2dEdGV4dk9jRmxxb1h1cmdMbXMwSHlEYXlPWVMyX3JZQVRMQ1Q2NzVCMlBSWE5fOWxVV0FQMUFyQTBabHhfWHZWYg?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
+            <td class="td-meta">동아일보<br><small style="color: #64748b;">2026-07-29</small></td>
+            <td class="td-score"><strong>79.0</strong></td>
+            <td><a href="https://news.google.com/rss/articles/CBMidkFVX3lxTE00SFpBc0tPQ0c4QnRrWEtwRVIzU1dTX3JPNGttd2FjcFFuNy0ya1U3cWJkekt6T293endPaHc2eWlGdWRyeF9UbldmT3FSRnU3Y2g4YzZCRE1jS1gxc2dGS2FCS3RXRXNGVmZDZks3N09hNWZBRHfSAWZBVV95cUxOY3NUanBlZXRBaG9WRW82MUFkX0M3LURRSzlhUlBYeHF1Z0J2dHJjc0RjLWh5bi1RaEM1UzBTUmlYcGV3OVRJWmxURXhRWkJMY1p1YTEtOENSWHV1RGpybFhCREllNnc?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
         </tr>
         
-        <tr class="table-row" data-domain="marketing" data-category="marketing">
+        <tr class="table-row" data-domain="startup" data-category="startup">
             <td class="td-rank">#26</td>
             <td>
-                <span class="badge" style="background: rgba(236,72,153,0.15); color: #f472b6; margin-bottom: 4px; display: inline-block;">📢 마케팅</span><br>
-                <span class="badge" style="background-color: #ec489920; color: #ec4899;">AI 마케팅·애드테크</span>
+                <span class="badge" style="background: rgba(245,158,11,0.15); color: #fbbf24; margin-bottom: 4px; display: inline-block;">🚀 스타트업</span><br>
+                <span class="badge" style="background-color: #f59e0b20; color: #f59e0b;">스타트업·투자</span>
             </td>
             <td class="td-title">
-                <a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE9WdVlvUnJzR2ItVGRCNC1VZkdPVXpiUFpjc0QwLVVRRi1hUjlkWG1hZTlyMGt5Y1hPZ3M3LUxYQ2NEcW9TRFZwT3FBOTE5U3pmcjlRd2UyNDhpT01KWWliR0F4SmZJT0hyOHc?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">챗GPT·답변형 AI에서 기업 콘텐츠 가시성 높이는 검색 마케팅 자동화 - 지티티코리아</a>
-                <div class="row-reason">[AI 마케팅] AI 마케팅/애드테크(마케팅) 부합 · 관심 기술 분야(ai, 자동화) 부합 - B2B 마케팅 자동화, 애드테크 도입 및 고객 전환율 극대화 전략에 활용 가능</div>
+                <a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE1yeHE4cjJrR09RZFpISDNnamI1THRua3M2U0JHclN2a3JOdm9Pb3NBWlJCUmRpOFlucG9Ub1N4UWZHUHowdlVxek43d2Q0bHlEeTVlSFdISi1zZjMyY2pZWEZ2R3RuZGtJMlE?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">히트펌프 구독서비스 스타트업 '모닥불에너지', 팁스(TIPS) 선정 - 냉동공조저널</a>
+                <div class="row-reason">[스타트업/투자] 스타트업/투자(스타트업, tips) 부합 · 관심 기술 분야(스타트업, tips) 부합 · 정부지원/사업화 기회(팁스) 포착 - 초기 스타트업 TIPS 선정, 투자 유치(IR) 및 스케일업 생태계 기회 포착</div>
             </td>
-            <td class="td-meta">지티티코리아<br><small style="color: #64748b;">2025-12-15</small></td>
-            <td class="td-score"><strong>70.0</strong></td>
-            <td><a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE9WdVlvUnJzR2ItVGRCNC1VZkdPVXpiUFpjc0QwLVVRRi1hUjlkWG1hZTlyMGt5Y1hPZ3M3LUxYQ2NEcW9TRFZwT3FBOTE5U3pmcjlRd2UyNDhpT01KWWliR0F4SmZJT0hyOHc?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
+            <td class="td-meta">냉동공조저널<br><small style="color: #64748b;">2026-07-22</small></td>
+            <td class="td-score"><strong>79.0</strong></td>
+            <td><a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE1yeHE4cjJrR09RZFpISDNnamI1THRua3M2U0JHclN2a3JOdm9Pb3NBWlJCUmRpOFlucG9Ub1N4UWZHUHowdlVxek43d2Q0bHlEeTVlSFdISi1zZjMyY2pZWEZ2R3RuZGtJMlE?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
         </tr>
         
-        <tr class="table-row" data-domain="marketing" data-category="marketing">
+        <tr class="table-row" data-domain="startup" data-category="startup">
             <td class="td-rank">#27</td>
             <td>
-                <span class="badge" style="background: rgba(236,72,153,0.15); color: #f472b6; margin-bottom: 4px; display: inline-block;">📢 마케팅</span><br>
-                <span class="badge" style="background-color: #ec489920; color: #ec4899;">AI 마케팅·애드테크</span>
+                <span class="badge" style="background: rgba(245,158,11,0.15); color: #fbbf24; margin-bottom: 4px; display: inline-block;">🚀 스타트업</span><br>
+                <span class="badge" style="background-color: #f59e0b20; color: #f59e0b;">스타트업·투자</span>
             </td>
             <td class="td-title">
-                <a href="https://news.google.com/rss/articles/CBMibEFVX3lxTFBTWlBWWWxvVDBialItc0JDb0RFS2xzWktpa0RYZ1VCSGNtQ2UwWGdYbWotWlJpMTAxVHAxNmRNNjdQcHJYMzE1YXdzZk1VS3hWZ1prRGxScGs1aGtCTk9YZnZDX29hUFVFeFFactIBckFVX3lxTE02RzVQVk5KbEppdDJvdmJuRzVHTS1XLW1IMGFwTlVOemhQZWYzcVJDcExVaDhLSEVtV2g4WkI5c3NHT3N5c0xUb0RhdzNfcmNRYTZIdUVXcHFubjJrb21uTnFOVlotTGtHWHFIcDc0TGFSZw?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">AI 마케팅 콘텐츠 제작 자동화 솔루션 브이캣, 2년 연속 매출 2배 이상 성장세 - 머니투데이 - mt.co.kr</a>
-                <div class="row-reason">[AI 마케팅] AI 마케팅/애드테크(마케팅) 부합 · 관심 기술 분야(ai, 자동화) 부합 - B2B 마케팅 자동화, 애드테크 도입 및 고객 전환율 극대화 전략에 활용 가능</div>
+                <a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE9GSmpxVVZwMzJJaGFWMXA2NW5oaGNkX19zckh6dVFBWVdSTjlhT19CRmhMbEJ2TTV3TWRUYm52bGlUY1NvRDhwOVhqQnBsc0FXQmhmTEY4T09RQ1R4MG02RXJ6TFQ0d0Zk0gFsQVVfeXFMUDRIcEw1eVVrSkVQWlpPbGpmT1JnQWN1M2VLTVlWUnpoa1dCZ3hsbXAyR0dJYUs5VWI4MEQ2eHd6TjEwN0dEZUdxUWpzeUlwaU00azQySGJfa2w2V0syMmFlNG1mVnV2ejFNc0U5?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">홈핏, 중기부 팁스(TIPS) 선정…기업 건강관리 AI·데이터 플랫폼 고도화 나선다 - 스타트업엔(StartupN)</a>
+                <div class="row-reason">[Gemini AI] B2B 건강관리 분야 스타트업의 팁스(TIPS) 선정 사례로서, 당사의 스타트업 인텔리전스 관점에서 정부 R&D 지원 트렌드와 B2B AI 플랫폼 기술 사업화 동향을 모니터링하는 데 유용한 정보입니다.</div>
             </td>
-            <td class="td-meta">mt.co.kr<br><small style="color: #64748b;">2025-09-30</small></td>
-            <td class="td-score"><strong>70.0</strong></td>
-            <td><a href="https://news.google.com/rss/articles/CBMibEFVX3lxTFBTWlBWWWxvVDBialItc0JDb0RFS2xzWktpa0RYZ1VCSGNtQ2UwWGdYbWotWlJpMTAxVHAxNmRNNjdQcHJYMzE1YXdzZk1VS3hWZ1prRGxScGs1aGtCTk9YZnZDX29hUFVFeFFactIBckFVX3lxTE02RzVQVk5KbEppdDJvdmJuRzVHTS1XLW1IMGFwTlVOemhQZWYzcVJDcExVaDhLSEVtV2g4WkI5c3NHT3N5c0xUb0RhdzNfcmNRYTZIdUVXcHFubjJrb21uTnFOVlotTGtHWHFIcDc0TGFSZw?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
+            <td class="td-meta">스타트업엔(StartupN)<br><small style="color: #64748b;">2026-07-18</small></td>
+            <td class="td-score"><strong>79.0</strong></td>
+            <td><a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE9GSmpxVVZwMzJJaGFWMXA2NW5oaGNkX19zckh6dVFBWVdSTjlhT19CRmhMbEJ2TTV3TWRUYm52bGlUY1NvRDhwOVhqQnBsc0FXQmhmTEY4T09RQ1R4MG02RXJ6TFQ0d0Zk0gFsQVVfeXFMUDRIcEw1eVVrSkVQWlpPbGpmT1JnQWN1M2VLTVlWUnpoa1dCZ3hsbXAyR0dJYUs5VWI4MEQ2eHd6TjEwN0dEZUdxUWpzeUlwaU00azQySGJfa2w2V0syMmFlNG1mVnV2ejFNc0U5?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
         </tr>
         
-        <tr class="table-row" data-domain="marketing" data-category="marketing">
+        <tr class="table-row" data-domain="startup" data-category="startup">
             <td class="td-rank">#28</td>
             <td>
-                <span class="badge" style="background: rgba(236,72,153,0.15); color: #f472b6; margin-bottom: 4px; display: inline-block;">📢 마케팅</span><br>
-                <span class="badge" style="background-color: #ec489920; color: #ec4899;">AI 마케팅·애드테크</span>
+                <span class="badge" style="background: rgba(245,158,11,0.15); color: #fbbf24; margin-bottom: 4px; display: inline-block;">🚀 스타트업</span><br>
+                <span class="badge" style="background-color: #f59e0b20; color: #f59e0b;">스타트업·투자</span>
             </td>
             <td class="td-title">
-                <a href="https://news.google.com/rss/articles/CBMibEFVX3lxTFBaWDF5S0pTOS1NLTROV2luVHlUZnhST1FHcHdlaEZaeWVJUmlFSmFMVjV0R3JSa3MzWkdnUFg0YVZSYkUzMTZsSmZqMFJKTkdBWjAwVU1QRGNRcjd1ZUlRLWh5OUUxMHd2bFJ4eQ?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">핵클, MCP 연동 기능 출시…AI 기반 CRM 마케팅 자동화 실현 - 뉴스탭</a>
-                <div class="row-reason">[AI 마케팅] AI 마케팅/애드테크(마케팅, crm) 부합 · 관심 기술 분야(ai, 자동화) 부합 - B2B 마케팅 자동화, 애드테크 도입 및 고객 전환율 극대화 전략에 활용 가능</div>
+                <a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE1JWWtjTUM3RnNfSDdUV0UtY1RwNVFUcmlFblNvRkJ4bDZiU09RejIweHVNV2JFcmYwZ3QyTUJPSEJtaTd6aDR3THctbTlCSmtOR2NiX05JVWRoT0FkWUtMZWlYd2NVeTBrcnfSAWxBVV95cUxNQzA4NjFLVzZLczYxQjkyRmNKSDVwM3cyYV9wSGtCQVZEY1ZuMXAxQUFuZXNmYmpNbFBIZW5ydTNkQzNwdC1ReklaMkQ1Qkl4WUtaQ1RTOUt0UmFmbHlnZElTZ2gxdjlOTkhIWmM?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">KB, AI·우주·로봇 스타트업 8개사 투자유치 지원 - 중소기업투데이</a>
+                <div class="row-reason">[스타트업/투자] 스타트업/투자(스타트업, 투자유치) 부합 · 관심 기술 분야(ai, 스타트업) 부합 - 초기 스타트업 TIPS 선정, 투자 유치(IR) 및 스케일업 생태계 기회 포착</div>
             </td>
-            <td class="td-meta">뉴스탭<br><small style="color: #64748b;">2025-05-29</small></td>
-            <td class="td-score"><strong>70.0</strong></td>
-            <td><a href="https://news.google.com/rss/articles/CBMibEFVX3lxTFBaWDF5S0pTOS1NLTROV2luVHlUZnhST1FHcHdlaEZaeWVJUmlFSmFMVjV0R3JSa3MzWkdnUFg0YVZSYkUzMTZsSmZqMFJKTkdBWjAwVU1QRGNRcjd1ZUlRLWh5OUUxMHd2bFJ4eQ?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
+            <td class="td-meta">중소기업투데이<br><small style="color: #64748b;">2026-09-12</small></td>
+            <td class="td-score"><strong>78.0</strong></td>
+            <td><a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE1JWWtjTUM3RnNfSDdUV0UtY1RwNVFUcmlFblNvRkJ4bDZiU09RejIweHVNV2JFcmYwZ3QyTUJPSEJtaTd6aDR3THctbTlCSmtOR2NiX05JVWRoT0FkWUtMZWlYd2NVeTBrcnfSAWxBVV95cUxNQzA4NjFLVzZLczYxQjkyRmNKSDVwM3cyYV9wSGtCQVZEY1ZuMXAxQUFuZXNmYmpNbFBIZW5ydTNkQzNwdC1ReklaMkQ1Qkl4WUtaQ1RTOUt0UmFmbHlnZElTZ2gxdjlOTkhIWmM?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
         </tr>
         
         <tr class="table-row" data-domain="marketing" data-category="marketing">
@@ -1121,12 +1135,12 @@
                 <span class="badge" style="background-color: #ec489920; color: #ec4899;">AI 마케팅·애드테크</span>
             </td>
             <td class="td-title">
-                <a href="https://news.google.com/rss/articles/CBMibEFVX3lxTFBHdjNTUGpIVlRzWEpwTTQ1LTd0Q2dSbDBmQWhfUmgtc3k5WXBPZWktWGdWaW1HUTJjVFVFX1JMRnRzeVJWODZFWDFWNEw4QWZyMkdQRzlHN2tJa0tDcnVrZkp4eEVjOHNsNzR1cg?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">세일즈포스, AI 에이전트로 마케팅·커머스 실행 자동화 박차 - 데이터넷</a>
-                <div class="row-reason">[AI 마케팅] AI 마케팅/애드테크(마케팅) 부합 · 관심 기술 분야(ai, 자동화) 부합 - B2B 마케팅 자동화, 애드테크 도입 및 고객 전환율 극대화 전략에 활용 가능</div>
+                <a href="https://news.google.com/rss/articles/CBMiakFVX3lxTFBWNHY5QlV1ZUlyVHoxYm5yVTdxQjhjNHFpRjhvemRZQU94cFVHWTQ5ajVwcUkzdXF1OWlNTlI4TTJUYTNVYUR3R0VOUk9HOG9mTFBoY0FnR0tJVVU2a2w1VVY0N2dsbWJqd2c?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">중소기업 희소식! 무료 AI 마케팅 자동화 플랜...SEO 최적화 콘텐츠 제작·광고 통합 지원 - 지티티코리아</a>
+                <div class="row-reason">[AI 마케팅] AI 마케팅/애드테크(마케팅, 광고) 부합 · 관심 기술 분야(ai, 자동화) 부합 - B2B 마케팅 자동화, 애드테크 도입 및 고객 전환율 극대화 전략에 활용 가능</div>
             </td>
-            <td class="td-meta">데이터넷<br><small style="color: #64748b;">2026-07-16</small></td>
-            <td class="td-score"><strong>69.0</strong></td>
-            <td><a href="https://news.google.com/rss/articles/CBMibEFVX3lxTFBHdjNTUGpIVlRzWEpwTTQ1LTd0Q2dSbDBmQWhfUmgtc3k5WXBPZWktWGdWaW1HUTJjVFVFX1JMRnRzeVJWODZFWDFWNEw4QWZyMkdQRzlHN2tJa0tDcnVrZkp4eEVjOHNsNzR1cg?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
+            <td class="td-meta">지티티코리아<br><small style="color: #64748b;">2025-07-10</small></td>
+            <td class="td-score"><strong>77.0</strong></td>
+            <td><a href="https://news.google.com/rss/articles/CBMiakFVX3lxTFBWNHY5QlV1ZUlyVHoxYm5yVTdxQjhjNHFpRjhvemRZQU94cFVHWTQ5ajVwcUkzdXF1OWlNTlI4TTJUYTNVYUR3R0VOUk9HOG9mTFBoY0FnR0tJVVU2a2w1VVY0N2dsbWJqd2c?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
         </tr>
         
         <tr class="table-row" data-domain="marketing" data-category="marketing">
@@ -1136,12 +1150,12 @@
                 <span class="badge" style="background-color: #ec489920; color: #ec4899;">AI 마케팅·애드테크</span>
             </td>
             <td class="td-title">
-                <a href="https://news.google.com/rss/articles/CBMicEFVX3lxTE1XdFBUeU1kYk5HY0NoelVNUmx1QzhGblhYTEdRdTREM3NYSjZkY0lSR0Z5eUNSeWFIWXh0N1M2UlVmcGh6b0JiMGFzcmY3Ui1QbGd0bVlRWHRCRTM4NWZjQUVuNGt0SHl1eXVvcElYRjDSAXBBVV95cUxNV3RQVHlNZGJOR2NDaHpVTVJsdUM4Rm5YWExHUXU0RDNzWEo2ZGNJUkdGeXlDUnlhSFl4dDdTNlJVZnBoem9CYjBhc3JmN1ItUGxndG1ZUVh0QkUzODVmY0FFbjRrdEh5dXl1b3BJWEYw?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">'K-뉴딜' AI 마케팅 과정 본궤도… 실무 역량 결합 취업 사다리 - 머니투데이 - mt.co.kr</a>
-                <div class="row-reason">[AI 마케팅] AI 마케팅/애드테크(마케팅) 부합 · 관심 기술 분야(ai, ai 마케팅) 부합 - B2B 마케팅 자동화, 애드테크 도입 및 고객 전환율 극대화 전략에 활용 가능</div>
+                <a href="https://news.google.com/rss/articles/CBMiTkFVX3lxTFBFVjVlSnhmd0lzeUcyd01PZldvRFBEa1dVUDlWQlRYRWJFRE05QjBneDl1OG11ZG1kdnBmSnN0ZEtTT0pCVjdMRXg4V05sZw?oc=5" target="_blank" rel="noopener noreferrer" class="title-link">[전화성의 기술창업 Targeting] 〈314〉 [AC협회장 주간록24] 인공지능 시대, 스타트업 창업방식 달라진다 - 전자신문</a>
+                <div class="row-reason">[AI 마케팅] 스타트업/투자(스타트업, 창업) 부합 · 디지털 마케팅 및 자동화 솔루션 동향 · 관심 기술 분야(스타트업) 부합 - B2B 마케팅 자동화, 애드테크 도입 및 고객 전환율 극대화 전략에 활용 가능</div>
             </td>
-            <td class="td-meta">mt.co.kr<br><small style="color: #64748b;">2026-09-14</small></td>
-            <td class="td-score"><strong>68.0</strong></td>
-            <td><a href="https://news.google.com/rss/articles/CBMicEFVX3lxTE1XdFBUeU1kYk5HY0NoelVNUmx1QzhGblhYTEdRdTREM3NYSjZkY0lSR0Z5eUNSeWFIWXh0N1M2UlVmcGh6b0JiMGFzcmY3Ui1QbGd0bVlRWHRCRTM4NWZjQUVuNGt0SHl1eXVvcElYRjDSAXBBVV95cUxNV3RQVHlNZGJOR2NDaHpVTVJsdUM4Rm5YWExHUXU0RDNzWEo2ZGNJUkdGeXlDUnlhSFl4dDdTNlJVZnBoem9CYjBhc3JmN1ItUGxndG1ZUVh0QkUzODVmY0FFbjRrdEh5dXl1b3BJWEYw?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
+            <td class="td-meta">전자신문<br><small style="color: #64748b;">2024-08-14</small></td>
+            <td class="td-score"><strong>77.0</strong></td>
+            <td><a href="https://news.google.com/rss/articles/CBMiTkFVX3lxTFBFVjVlSnhmd0lzeUcyd01PZldvRFBEa1dVUDlWQlRYRWJFRE05QjBneDl1OG11ZG1kdnBmSnN0ZEtTT0pCVjdMRXg4V05sZw?oc=5" target="_blank" class="table-btn" rel="noopener noreferrer">원문</a></td>
         </tr>
         
                 </tbody>
@@ -1150,7 +1164,7 @@
 
         <footer>
             <p>Generated by <strong>Project 1: Market Intelligence Agent</strong> for NovaFactory AI</p>
-            <p>Hosted on GitHub Pages | Static Multi-Domain Intelligence System</p>
+            <p>Hosted on GitHub Pages | Static 3-Domain Intelligence System</p>
         </footer>
     </div>
 
@@ -1163,16 +1177,20 @@
             document.querySelectorAll('.nav-tab').forEach(t => {
                 t.classList.remove('active');
                 t.classList.remove('marketing-active');
+                t.classList.remove('startup-active');
             });
             btn.classList.add('active');
             if (domain === 'marketing') {
                 btn.classList.add('marketing-active');
+            } else if (domain === 'startup') {
+                btn.classList.add('startup-active');
             }
 
             const subtext = document.getElementById('topSubtext');
             if (domain === 'all') subtext.innerText = '현재 메뉴: 전체 통합 인텔리전스';
             else if (domain === 'manufacturing') subtext.innerText = '현재 메뉴: 제조업 AI 인텔리전스';
             else if (domain === 'marketing') subtext.innerText = '현재 메뉴: AI 마케팅 인텔리전스';
+            else if (domain === 'startup') subtext.innerText = '현재 메뉴: 스타트업 투자·생태계 인텔리전스';
 
             applyAllFilters();
         }
