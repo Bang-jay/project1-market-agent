@@ -1,0 +1,26 @@
+# Environment variables and secrets
+.env
+.env.local
+.env.*.local
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Temporary starter folder
+project1_market_agent_starter/
+
+# Logs
+logs/*.log
+
+# Generated data (optional raw/processed CSVs, keep structure)
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
